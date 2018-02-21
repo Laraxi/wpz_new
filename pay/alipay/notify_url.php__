@@ -1,0 +1,86 @@
+<?php
+define('ROOT_PATH', str_replace("\\", '/', substr(__FILE__, 0, strrpos(dirname(dirname(dirname(__FILE__))), DIRECTORY_SEPARATOR))).'/');
+define('CORE_PATH', ROOT_PATH.'source/');
+
+require(CORE_PATH.'init.php');
+require(CORE_PATH.'vendor/alipay/alipay.config.php');
+require(CORE_PATH.'vendor/alipay/lib/alipay_notify.class.php');
+
+//计算得出通知验证结果
+$alipayNotify = new AlipayNotify($alipay_config);
+$verify_result = $alipayNotify->verifyNotify();
+
+if ($verify_result) {
+	$out_trade_no = $_POST['out_trade_no']; //商户订单号
+	$trade_no = $_POST['trade_no']; //支付宝交易号
+	$trade_status = $_POST['trade_status']; //交易状态
+	
+	//查询并同步订单状态
+	$table = $DB->table('consumes');
+	$row = $DB->fetch_one("SELECT cons_id, user_id, cons_money, cons_status FROM $table WHERE order_id='$out_trade_no' LIMIT 1");
+	if ($row) {
+		$DB->update($table, array('trade_no' => $trade_no), $where);
+		
+		$where = array('cons_id' => $row['cons_id']);
+		if ($_POST['trade_status'] == 'WAIT_BUYER_PAY') {
+			if ($row['cons_status'] == 0) {
+				$DB->update($table, array('trade_status' => $trade_status, 'cons_status' => 1, 'cons_time' => time()), $where);
+			}
+			
+			echo 'success';
+			//调试用，写文本函数记录程序运行情况是否正常
+			//logResult("OrderID: $out_trade_no|Trade_NO: $trade_no|Status: $trade_status");
+		} else if ($_POST['trade_status'] == 'WAIT_SELLER_SEND_GOODS') {
+			if ($row['cons_status'] == 1) {
+				//自动发货
+				$parameter = array(
+					'service' => 'send_goods_confirm_by_platform',
+					'partner' => trim($alipay_config['partner']),
+					'trade_no' => $trade_no,
+					'logistics_name' => $options['site_name'],
+					'invoice_no' => '',
+					'transport_type' => 'DIRECT',
+					'_input_charset' => trim(strtolower($alipay_config['input_charset']))
+				);
+				
+				//建立请求
+				$alipaySubmit = new AlipaySubmit($alipay_config);
+				$htmltext = $alipaySubmit->buildRequestHttp($parameter);
+				if (preg_match('/<is_success>T<\/is_success>/i', $htmltext, $matches)) {
+					$DB->update($table, array('trade_status' => $trade_status, 'cons_status' => 2, 'cons_time' => time()), $where);
+				}
+			}
+			
+			echo 'success';
+			//调试用，写文本函数记录程序运行情况是否正常
+			//logResult("OrderID: $out_trade_no|Trade_NO: $trade_no|Status: $trade_status");
+		} else if ($_POST['trade_status'] == 'WAIT_BUYER_CONFIRM_GOODS') {
+			if ($row['cons_status'] == 2) {
+				$DB->update($table, array('trade_status' => $trade_status, 'cons_status' => 3, 'cons_time' => time()), $where);
+			}
+			
+			echo 'success';
+			//调试用，写文本函数记录程序运行情况是否正常
+			//logResult("OrderID: $out_trade_no|Trade_NO: $trade_no|Status: $trade_status");
+		} else if ($_POST['trade_status'] == 'TRADE_FINISHED') {
+			$score = $row['cons_money'] * round($options['exchange_score'] / $options['exchange_money']);
+			$DB->update($table, array('trade_status' => $trade_status, 'cons_score' => $score, 'cons_status' => 4, 'cons_time' => time()), $where);
+			$DB->query("UPDATE ".$DB->table('users')." SET user_score=user_score+".$score." WHERE user_id='".$row['user_id']."' LIMIT 1");		
+			
+			echo 'success';
+			//调试用，写文本函数记录程序运行情况是否正常
+			//logResult("OrderID: $out_trade_no|Trade_NO: $trade_no|Status: $trade_status");
+		} else {
+			//其他状态判断
+			echo 'success';
+
+			//调试用，写文本函数记录程序运行情况是否正常
+			//logResult ("这里写入想要调试的代码变量值，或其他运行的结果记录");
+		}
+	}
+}
+else {
+    //验证失败
+    echo "fail";
+}
+?>

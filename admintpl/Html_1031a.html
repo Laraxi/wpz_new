@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+<style type="text/css">
+#div1024{ margin-left:40px; width:90%; }
+.actions { width:100%; border:1px solid #ccc; margin-bottom:200px; }
+.actions td { border-bottom:1px solid #ccc; padding:6px 0 6px 0; }
+.son_menu { width:100%; border-bottom:1px dotted #ccc; padding:4px 0 4px 0; }
+.first-cell { border-right:1px solid #ccc; }
+.checkbox { vertical-align:middle; margin-top:-2px; }
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.inside_mgr}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.role_set}</a>
+                <span class="divider">/</span>
+                <a href=""><!--{$title}--></a>
+            </ul>
+            <div class="title_right">
+                <span class="pull-right margin-bottom-5">
+                    <a href="javascript:resetForm()" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+                    <a href="javascript:submitForm()" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+                </span>
+                <!--{if $row.role_id eq ""}-->{$lang.new}<!--{else}-->{$lang.edit}<!--{/if}-->{$lang.role}
+            </div> 
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div id='div1024'>
+        <form name="form1" method="post">
+            <table bgcolor="#999999" cellpadding="10" cellspacing="1" style="border:1px solid #ccc;">
+                <tr>
+                    <td width="100" height="20" align="right" class="opt_txt" style="border-bottom:1px solid #ccc">{$lang.label.role_name}：</td>
+                    <td style="border-bottom:1px solid #ccc">
+                        <input type="text" id="role_name" name="role_name" value="<!--{$row.role_name}-->" data-required="{$lang.label.please_input}{$lang.label.role_name}" size="40" />                        
+                    </td>
+                    <!-- 以下是提示信息位置 -->
+                    <td width="206" style="border-bottom:1px solid #ccc"></td>
+                    <td width="100" align="right" class="opt_txt" style="border-bottom:1px solid #ccc">{$lang.label.admin_level}：</td>
+                    <td style="border-bottom:1px solid #ccc"><span style="border-right: 0px; text-align:left">
+                      <select name="level_grade" id="level_grade" data-required="{$lang.please_select}级别">
+                        <option value="">{$lang.please_select}</option>
+                        <option value="1"{if $row.level_grade==1} selected="selected"{/if}>1</option>
+                        <option value="2"{if $row.level_grade==2} selected="selected"{/if}>2</option>
+                        <option value="3"{if $row.level_grade==3} selected="selected"{/if}>3</option>
+                        <option value="4"{if $row.level_grade==4} selected="selected"{/if}>4</option>
+                        <option value="5"{if $row.level_grade==5} selected="selected"{/if}>5</option>
+                        <option value="6"{if $row.level_grade==6} selected="selected"{/if}>6</option>
+                        <option value="7"{if $row.level_grade==7} selected="selected"{/if}>7</option>
+                        <option value="8"{if $row.level_grade==8} selected="selected"{/if}>8</option>
+                        <option value="9"{if $row.level_grade==9} selected="selected"{/if}>9</option>
+                        <option value="10"{if $row.level_grade==10} selected="selected"{/if}>10</option>
+                        <option value="11"{if $row.level_grade==11} selected="selected"{/if}>11</option>
+                        <option value="12"{if $row.level_grade==12} selected="selected"{/if}>12</option>
+                        <option value="13"{if $row.level_grade==13} selected="selected"{/if}>13</option>
+                        <option value="14"{if $row.level_grade==14} selected="selected"{/if}>14</option>
+                        <option value="15"{if $row.level_grade==15} selected="selected"{/if}>15</option>
+                      </select>
+                    </span></td>
+                    <td style="border-bottom:1px solid #ccc">{$lang.tips.class_tips}</td>
+                    <!-- 以下是提示信息位置 -->                </tr>
+                <tr>
+                    <td align="right" class="opt_txt">{$lang.label.role_desc}：</td>
+                    <td style="border-right: 0px; text-align:left">
+                        <textarea id="role_describe" name="role_describe" rows="4" style="width:99%" /><!--{$row.role_describe}--></textarea>
+                    </td>
+                    <!-- 以下是提示信息位置 -->
+                    <td style="border-left: 0px;"></td>
+                    <td align="right" class="opt_txt" style="border-left: 0px;">{$lang.label.parent_role}：</td>
+                    <td style="border-left: 0px;"><span style="border-right: 0px; text-align:left">
+                      <select name="parent_id" id="parent_id" data-required="{$lang.please_select}{$lang.role}">
+                        <option value="">{$lang.please_select}</option>
+                        <!--{foreach from=$role item=role}-->
+                        <option value="{$role.role_id}"{if $row.parent_id==$role.role_id} selected="selected"{/if}>{$role.role_name}</option>
+                        <!--{/foreach}-->
+                      </select>
+                    </span></td>
+                    <td style="border-left: 0px;">&nbsp;</td>
+                    <!-- 以下是提示信息位置 -->
+                </tr>
+            </table>
+            
+            <br />
+            <h2>{$lang.label.role_action} &nbsp;<label><input type="checkbox" name="checkall" value="checkbox" onclick="check('parent',this);" class="checkbox" /><font style="font-size:12px; font-weight:normal;">{$lang.checked_all}</font></label></h2>
+            
+            <table cellspacing='2' class="actions" id="parent">
+            {foreach from=$actions item=priv}
+             <tr>
+              <td width="130" valign="top" class="first-cell">
+                <label><input name="action_code[]" type="checkbox" value="{$priv.info.action_id}" id="{$priv.info.action_id}" onclick="check('son{$priv.info.action_id}',this);" class="checkbox" />{$priv.info.name}</label>
+              </td>
+              <td id="son{$priv.info.action_id}">
+                {foreach from=$priv.son name=priv_list key=priv_list item=list}
+                <div class="son_menu" {if $smarty.foreach.priv_list.last} style="border:none"{/if} id="child{$list.info.action_id}">
+                    <label><input type="checkbox" name="action_code[]" value="{$list.info.action_id}" id="{$list.info.action_id}" class="checkbox" {if $list.cando eq 1} checked="true" {/if} onclick="check('child{$list.info.action_id}',this)" /><b>{$list.info.name}&gt;&gt;</b></label>
+                    {foreach from=$list.child key=priv_list1 item=chlist}
+                        <label id="child{$chlist.action_id}"><input type="checkbox" name="action_code[]" value="{$chlist.action_id}" id="{$chlist.action_id}" class="checkbox" {if $chlist.cando eq 1} checked="true" {/if} onclick="check('child{$chlist.action_id}',this)" />{$chlist.name}</label>&emsp;
+                    {/foreach}
+                </div>
+                {/foreach}
+            </td>
+            </tr>
+            {/foreach}
+            </table>
+            <input type="hidden" id="role_id" name="role_id" value="<!--{$row.role_id}-->" />
+            </form>
+        </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+//表单验证函数
+function formCheck(form){
+	var formArr = form.elements;
+	for (var i=0; i<formArr.length; i++) {
+		var items = formArr[i];
+		if (items.getAttribute("data-required") && items.value=="") {
+			alert(items.getAttribute("data-required"));
+			items.focus();
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function submitForm(){
+	var form = document.forms['form1'];
+	if (formCheck(form)) {
+		var does = getId("role_id") && getId("role_id").value!="" ? "update_role" : "add_role";
+		form.action="?action=user&do=" + does;
+		form.submit();
+	}
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+function check(id,obj){
+	var checkbox = getId(id).getElementsByClassName("checkbox");
+	for (var i=0; i<checkbox.length; i++) {
+		checkbox.item(i).checked=obj.checked;
+	}
+	/*if (obj!=checkbox.item(0)) {
+		var parent = obj.parentNode.parentNode.getElementsByClassName("checkbox");
+		nocheck = 0;
+		for (var j=1; j<parent.length; j++) {
+			if (parent.item(j).checked==false) {
+				nocheck++;
+			}
+		}
+		if (nocheck==0 && parent.item(0)) {
+			parent.item(0).checked=true;
+		}
+	}*/
+}
+
+
+<!--{if $row.action_list}-->
+var action_list = '{$row.action_list}';
+action_list = action_list.split(",");
+for (var i=0; i<action_list.length; i++) {
+	getId(action_list[i]).checked=true;
+}
+<!--{/if}-->
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+<!-- 顶部div盒子（始） -->
+<div class="header">
+    <div class="logo"><img src="../admintpl/img/logo.png" height="50" /></div>
+    <div class="header-right"> 
+        <a href="index.php" target="_blank">{$lang.label.index}</a> 
+        
+        <a href="?action=system">{$lang.label.setting}</a>
+        <a href=""><!--{$smarty.session.username}--></a>
+        <a href="?action=user&do=edit&id=<!--{$smarty.session.userid}-->">{$lang.label.change_password}</a>
+        <a href="?action=system&do=clearcache">{$lang.label.clear_cache}</a>
+        <a id="modal-973558" href="?action=user&do=logout" role="button" data-toggle="modal">{$lang.logout}</a> 
+        <a id="showTime"><?php echo date("Y年m月d日 H:i:s", time()); ?></a>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+	$(function (){
+		setInterval("document.getElementById('showTime').innerHTML=new Date().toLocaleString();",1000);
+	});
+  </script>
+
+<!-- 顶部div盒子（止） -->

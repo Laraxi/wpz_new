@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$lang.title.charge_online} - <!--{$cfg.webtitle}--></title>
+  <meta name="description" content="<!--{$cfg.description}-->">
+  <meta name="keywords" content="<!--{$cfg.keywords}-->">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/amazeui.min.css">
+  <script src="<!--{$cfg.template_dir}-->/js/jquery.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/amazeui.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/layer.min.js"></script>
+</head>
+<body>
+<style>
+.am-g-fixed{
+  max-width: 1200px;
+}
+a{ color:#333333}
+.login-status{ float:right;color: #333333; font-size: 14px; padding-top: 20px;}
+.login-status a{color: #333333;}
+</style>
+
+<!--{include file="head.html"}-->
+
+<div class="am-g am-g-fixed">
+<div class="am-g" style="margin-top: -5px;">	
+	<!--{include file="menu.html"}-->
+<div class="am-u-sm-10">	
+	<div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">
+	    <h3 class="am-panel-title">{$lang.title.charge_online}</h3>
+	  </div>
+	  <div class="am-panel-bd">
+	    <p>{$lang.index.cur_account}<!--{$cfg.coin_name}-->{$lang.index.balance}：<b class="am-badge am-radius"><!--{$user_info.money}--></b></p>    
+        <p>{$lang.index.cur_account}{$lang.index.member_level}：<b class="am-badge am-badge am-radius"><!--{$user_info.level_name}--></b></p>   
+        <p>{$lang.index.coin_tips1}<!--{$cfg.coin_rate}-->{$lang.index.piece}<!--{$cfg.coin_name}--></p>				
+	  </div>
+      <form class="am-form" action="index.php?action=pay&do=jumpcharge" method="post" target="_blank">
+          <div style="padding-left: 18px;">
+            <div class="am-form-group" style="margin-top: -20px;">
+              <div class="am-form-group" style=" margin-top:5px;">
+                  <label for="doc-ipt-zb-1"><!--{$cfg.coin_name}-->{$lang.index.amount} </label>
+                  <select data-am-selected name="amount" id="amount-p">
+                    <option value="10"><!--{$coin_qty.0}-->{$lang.index.piece}</option>
+                    <option value="30" selected><!--{$coin_qty.1}-->{$lang.index.piece}</option>
+                    <option value="60"><!--{$coin_qty.2}-->{$lang.index.piece}</option>
+                  </select>
+              </div>
+              <div class="am-form-group">
+                <style>
+                .am-form-group .am-warning{ margin-top:15px;}
+                </style>
+                  <label for="doc-ipt-email-1">{$lang.index.pay_type}</label>
+                      <label class="am-radio am-warning">
+                            <input type="radio" name="channel" value="alipay" data-am-ucheck checked> <img src="https://static.wpz.cc/Public/images/alipay.png" width="32" height="32" style="margin-right:1px;margin-top:-5px;">  {$lang.pay.pay_type1}
+                          </label>
+                          <label class="am-radio am-warning">
+                            <input type="radio" name="channel" value="weixin2" data-am-ucheck > <img src="https://static.wpz.cc/Public/images/wxpay.png" width="32" height="32" style="margin-right:1px;margin-top:-5px;">  {$lang.pay.pay_type3}
+                          </label>
+                          <!-- <label class="am-radio am-warning"> -->
+                            <!-- <input type="radio" name="channel" value="ot1" data-am-ucheck > <img src="https://static.wpz.cc/Public/images/qqpay.png" width="32" height="32" style="margin-right:1px;margin-top:-5px;"> QQ钱包扫码 -->
+                          <!-- </label> -->
+                              
+                  <p style="font-weight:normal;">{$lang.index.coin_tips2}</p>
+              </div>			
+            </div>
+            <p><button type="submit" id="post-pay" class="am-btn am-btn-warning am-radius">{$lang.index.btn_charge}</button></p>
+                <div style="font-size:14px;">
+                    {$lang.index.coin_tips3}
+                </div>
+              </div>
+          </form>
+		</div>
+	</div>
+</div>
+<script>
+
+$("#amount-p").change(function(){  
+	$("#amount-rmb").html($("#amount-p").val())
+})
+$(":radio").click(function(){  
+	$("#amount-rmb").html($("#amount-p").val())
+}) 
+
+</script>
+<style>
+footer a { color:#333;}
+.tj { display:none;}
+</style>
+<!--{include file="foot.html"}-->
+<!--回到顶部-->
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+<a href="#" title="{$lang.label.go_top}">
+    <span class="am-gotop-title">{$lang.label.go_top}</span>
+      <i class="am-gotop-icon am-icon-chevron-up"></i>
+</a>
+<!--回到顶部 end-->
+</div>
+
+</body>
+</html>

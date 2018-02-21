@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+<style type="text/css">
+<!--
+input { height:20px; line-height:20px; }
+-->
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.system_setting}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.menu_manage}</a>
+            </ul>
+            <a href="javascript:resetForm('form1')" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+            <a href="javascript:submitForm('form1','system')" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+            <div class="row-fluid">
+                <form name="form1" method="post">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr align="center" bgcolor="#EFF5FE">
+                                <th>{$lang.label.id}</th>
+                                <th>{$lang.label.menu_name}</th>
+                                <th>{$lang.label.link_code}</th>
+                                <th>{$lang.label.parent_menu}</th>
+                                <th>{$lang.label.role_level}</th>
+                                <th>{$lang.label.order}</th>
+                                <th>{$lang.handle}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--{foreach from=$menus_list item=menu}-->
+                            <tr class="txt_center">
+                                <td><!--{$menu.info.action_id}--></td>
+                                <td style="text-align:left;padding-left:10px;font-size:14px;font-weight:bold;"><input type="text" name="name[{$menu.info.action_id}]" value="{$menu.info.name}" style="color:#C33" /></td>
+                                <td><input type="text" name="action_code[{$menu.info.action_id}]" value="{$menu.info.action_code}" {if $menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                <td><input type="text" name="parent_id[{$menu.info.action_id}]" value="{$menu.info.parent_id}" class="input-small" {if $menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                <td><input type="text" name="class[{$menu.info.action_id}]" value="{$menu.info.class}" class="input-small" {if $menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                <td><input type="text" name="orders[{$menu.info.action_id}]" value="{$menu.info.orders}" class="input-small" {if $menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                <td><!--{if $menu.info.is_system!=1}--><a href="javascript:if(confirm('{$lang.js.confirm_del_menu}')){window.location='?action=system&do=menudelete&id=<!--{$menu.info.action_id}-->';}">{$lang.del}</a><!--{/if}-->
+                                </td>
+                            </tr>
+                            {foreach from=$menu.son name=menu_list key=menu_list item=list_menu}
+                                <tr class="txt_center">
+                                  <td><!--{$list_menu.info.action_id}--></td>
+                                  <td style="text-align:left;padding-left:10px;">├- <input type="text" name="name[{$list_menu.info.action_id}]" value="{$list_menu.info.name}" style="color:#03C" /></td>
+                                  <td><input type="text" name="action_code[{$list_menu.info.action_id}]" value="{$list_menu.info.action_code}" {if $list_menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="parent_id[{$list_menu.info.action_id}]" value="{$list_menu.info.parent_id}" class="input-small" {if $list_menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="class[{$list_menu.info.action_id}]" value="{$list_menu.info.class}" class="input-small" {if $list_menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="orders[{$list_menu.info.action_id}]" value="{$list_menu.info.orders}" class="input-small" {if $list_menu.info.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><!--{if $list_menu.info.is_system!=1}--><a href="javascript:if(confirm('{$lang.js.confirm_del_menu}')){window.location='?action=system&do=menudelete&id=<!--{$list_menu.info.action_id}-->';}">{$lang.del}</a><!--{/if}-->
+                                  </td>
+                                </tr>
+                                {foreach from=$list_menu.child key=menu_list1 item=chlist}
+                                <tr class="txt_center">
+                                  <td><!--{$chlist.action_id}--></td>
+                                  <td style="text-align:left;padding-left:40px;">├- <input type="text" name="name[{$chlist.action_id}]" value="{$chlist.name}" /></td>
+                                  <td><input type="text" name="action_code[{$chlist.action_id}]" value="{$chlist.action_code}" {if $chlist.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="parent_id[{$chlist.action_id}]" value="{$chlist.parent_id}" class="input-small" {if $chlist.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="class[{$chlist.action_id}]" value="{$chlist.class}" class="input-small" {if $chlist.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><input type="text" name="orders[{$chlist.action_id}]" value="{$chlist.orders}" class="input-small" {if $chlist.is_system==1}readonly="readonly"{/if} /></td>
+                                  <td><!--{if $chlist.is_system!=1}--><a href="javascript:if(confirm('{$lang.js.confirm_del_menu}')){window.location='?action=system&do=menudelete&id=<!--{$chlist.action_id}-->';}">{$lang.del}</a><!--{/if}-->
+                                  </td>
+                                </tr>
+                                {/foreach}
+                             {/foreach}
+                            <!--{/foreach}-->
+                    </table>
+              </form>
+              
+              <form name="form2" method="post" action="?action=system&do=menuadd">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr align="center" bgcolor="#EFF5FE">
+                                <th>{$lang.label.menu_name}</th>
+                                <th>{$lang.label.link_code}</th>
+                                <th>{$lang.label.menu_level}</th>
+                                <th>{$lang.label.parent_menu}</th>
+                                <th>{$lang.label.role_level}</th>
+                                <th>{$lang.label.order}</th>
+                                <th>{$lang.handle}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="txt_center">
+                                <td><input type="text" name="name" value="" /></td>
+                                <td><input type="text" name="action_code" value="" /></td>
+                                <td><select name="level" class="input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                </select></td>
+                                <td><input type="text" name="parent_id" value="" class="input-small" /></td>
+                                <td><input type="text" name="class" value="1" class="input-small" /></td>
+                                <td><input type="text" name="orders" value="1" class="input-small" /></td>
+                                <td>
+                                    <input type="submit" name="submit" value="{$lang.label.rise}" class="btn btn-primary" style="height:26px; line-height:20px;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+              </form>
+            </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+//表单验证函数
+function formCheck(form){
+	var formArr = form.elements;
+	for (var i=0; i<formArr.length; i++) {
+		var items = formArr[i];
+		if (items.getAttribute("data-required") && items.value=="") {
+			alert(items.getAttribute("data-required"));
+			items.focus();
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function submitForm(){
+	var form = document.forms['form1'];
+	if (formCheck(form)) {
+		form.action="?action=system&do=savemenu";
+		form.submit();
+	}
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+<!--{if $rowjson}-->
+var json= <!--{$rowjson}-->;
+selectJson(json);
+<!--{/if}-->
+
+</script>
+
+</body>
+</html>

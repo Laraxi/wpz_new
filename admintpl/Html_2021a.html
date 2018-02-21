@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{if $row.level_id eq ""}-->{$lang.new}<!--{else}-->{$lang.edit}<!--{/if}-->角色</title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+<style type="text/css">
+#div1024{ margin-left:40px; width:90%; }
+.actions { width:100%; border:1px solid #ccc; margin-bottom:200px; }
+.actions td { border-bottom:1px solid #ccc; padding:6px 0 6px 0; }
+.son_menu { width:100%; border-bottom:1px dotted #ccc; padding:4px 0 4px 0; }
+.first-cell { border-right:1px solid #ccc; }
+.checkbox { vertical-align:middle; margin-top:-2px; }
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.title.user_manage}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.class_mgr}</a>
+                <span class="divider">/</span>
+                <a href=""><!--{$title}--></a>
+            </ul>
+            <div class="title_right">
+                <span class="pull-right margin-bottom-5">
+                    <a href="javascript:resetForm()" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+                    <a href="javascript:submitForm()" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+                </span>
+            </div> 
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div id='div1024'>
+        <form name="form1" method="post">
+          <table class="table table-bordered input_form">
+                <tr>
+                  <td class="opt_txt">{$lang.label.class_name}：</td>
+                  <td style="border-right:0px;"><input type="text" id="level_name" name="level_name" value="<!--{$row.level_name}-->" data-required="{$lang.label.please_input}{$lang.label.class_name}" size="40" /></td>
+                  <td style="border-left:0px;border-right:0px;">&nbsp;</td>
+                  <td style="border-left:0px;border-right:0px;text-align:left;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="opt_txt">{$lang.label.parent_class}：</td>
+                  <td style="border-right:0px;"><select name="parent_id" id="parent_id">
+                        <option value="">{$lang.please_select}</option>
+                        <!--{foreach from=$level item=level}-->
+                        <option value="{$level.level_id}"{if $row.parent_id==$level.level_id} selected="selected"{/if}>{$level.level_name}</option>
+                        <!--{/foreach}-->
+                  </select></td>
+                  <td style="border-left:0px;border-right:0px;">&nbsp;</td>
+                  <td style="border-left:0px;border-right:0px;text-align:left;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="opt_txt">{$lang.label.need_point}：</td>
+                  <td style="border-right:0px;"><input type="text" id="point" name="point" value="<!--{$row.point}-->" data-required="{$lang.label.please_input}{$lang.label.need_point}" size="40" /></td>
+                  <td style="border-left:0px;border-right:0px;">&nbsp;</td>
+                  <td style="border-left:0px;border-right:0px;text-align:left;">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="opt_txt">{$lang.label.class_desc}：</td>
+                  <td style="border-right:0px;"><textarea id="level_describe" name="level_describe" rows="4" class="input_w2" /><!--{$row.level_describe}--></textarea></td>
+                  <td style="border-left:0px;border-right:0px;">&nbsp;</td>
+                  <td style="border-left:0px;border-right:0px;text-align:left;">&nbsp;</td>
+                </tr>
+            </table>
+          <input type="hidden" id="level_id" name="level_id" value="<!--{$row.level_id}-->" />
+            </form>
+        </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+//表单验证函数
+function formCheck(form){
+	var formArr = form.elements;
+	for (var i=0; i<formArr.length; i++) {
+		var items = formArr[i];
+		if (items.getAttribute("data-required") && items.value=="") {
+			alert(items.getAttribute("data-required"));
+			items.focus();
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function submitForm(){
+	var form = document.forms['form1'];
+	if (formCheck(form)) {
+		var does = getId("level_id") && getId("level_id").value!="" ? "update_level" : "add_level";
+		form.action="?action=member&do=" + does;
+		form.submit();
+	}
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+function check(id,obj){
+	var checkbox = getId(id).getElementsByClassName("checkbox");
+	for (var i=0; i<checkbox.length; i++) {
+		checkbox.item(i).checked=obj.checked;
+	}
+}
+
+
+<!--{if $row.action_list}-->
+var action_list = '{$row.action_list}';
+action_list = action_list.split(",");
+for (var i=0; i<action_list.length; i++) {
+	getId(action_list[i]).checked=true;
+}
+<!--{/if}-->
+
+</script>
+
+</body>
+</html>

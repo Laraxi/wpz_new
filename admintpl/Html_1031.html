@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+   <!--{include file="Menu.html"}-->
+   
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.inside_mgr}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.role_manage}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.role_list}</a>
+            </ul>
+            <a href="?action=user&do=newrole" class="btn btn-primary pull-right" style="margin-left:10px;" role="button"><i class="icon-plus icon-white" ></i> {$lang.label.add_role}</a>
+        </div>
+        <br />
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+            <div class="row-fluid">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr align="center" bgcolor="#EFF5FE">
+                      <th nowrap="nowrap">{$lang.label.id}</th>
+                      <th nowrap="nowrap">{$lang.label.role_name}</th>
+                      <th nowrap="nowrap">{$lang.label.parent_role}</th>
+                      <th nowrap="nowrap">{$lang.label.role_level}</th>
+                      <th nowrap="nowrap">{$lang.label.role_desc}</th>
+                      <th width="200">{$lang.handle}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--{foreach from=$role item=row}-->
+                    <tr class="txt_center">
+                      <td nowrap="nowrap"><!--{$row.role_id}--></td>
+                        <td nowrap="nowrap"><!--{$row.role_name}--></td>
+                        <td nowrap="nowrap"><!--{$row.parent_name}--></td>
+                        <td nowrap="nowrap"><!--{$row.level_grade}--></td>
+                        <td nowrap="nowrap"><!--{$row.role_describe}--></td>
+                        <td nowrap="nowrap">
+                            <a href="?action=user&do=editrole&id=<!--{$row.role_id}-->">{$lang.edit}</a>
+                            <a href="javascript:if(confirm('{$lang.js.confirm_del_role}')){window.location='?action=user&do=delrole&id=<!--{$row.role_id}-->';}">{$lang.del}</a>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/2.11.3/jquery.min.js"></script>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</body>
+</html>

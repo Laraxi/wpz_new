@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><!--{$cfg.webtitle}--> - {$lang.index.web_desc1}</title>
+  <meta name="description" content="<!--{$cfg.description}-->">
+  <meta name="keywords" content="<!--{$cfg.keywords}-->">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-title" content="<!--{$cfg.webtitle}-->">
+  <meta name="format-detection" content="telephone=no, email=no"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/amazeui.min.css">
+  <script src="<!--{$cfg.template_dir}-->/js/jquery.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/amazeui.min.js"></script>  
+  <script src="<!--{$cfg.template_dir}-->/js/layer.min.js"></script>
+</head>
+<body>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<style>
+a{color:#333333}
+.login-status{color: #333333; font-size: 14px; padding-top: 20px;}
+.login-status a{color: #333333;}
+#post-share-box{display: none;}
+#notice{margin:10px 12px 0 12px; padding:6px; font-size:0; overflow:hidden; background:#DC514C; }
+#notice i{ display:inline-block; vertical-align:top; height:24px; line-height:24px; font-size:14px; } 
+#notice marquee{ display:inline-block; height:24px; line-height:24px; font-size:14px; margin-left:6px; margin-right:12px; } 
+</style>
+
+<header class="am-topbar am-topbar-inverse" style="background:#FFF; border-bottom:1px solid #eee; height:65px;">
+  <div class="am-container am-g-fixed">
+    <h1 class="am-topbar-brand" style="margin:0;padding:0;width:100%;">
+      <a href="/" class="am-text-ir"><img src="<!--{$cfg.template_dir}-->/img/logo.jpg" border="0" style="width:100%;" /><!--{$cfg.webtitle}--> - {$lang.index.web_desc}</a>
+    </h1>
+    </div>
+  </div>
+</header>
+<div class="am-g am-g-fixed">
+  <div class="am-u-sm-12" style="margin-top:-30px;font-size:12px;">
+		<div class="login-status" style="margin-bottom:5px;">
+            <!--{if $user_info.userid==''}-->
+            <span style="padding-right: 5px;"> {$lang.index.login_tips} </span> <a href="?action=member&do=login" class="am-icon-sign-in"> {$lang.login}</a>
+            <!--{else}-->
+            <span class="am-icon-qq"></span><span style="padding-top: 10px; padding-left: 5px;">UID：<b class="am-badge am-radius"><!--{$user_info.username}--></b> <a href="?action=member&do=charge"><!--{$cfg.coin_name}-->：<b class="am-badge am-radius"><!--{$user_info.money}--></b></a> <a href="?action=member">{$lang.index.level}：<b class="am-badge am-badge{if $user_info.levelid>1}-warning{/if} am-radius"><!--{$user_info.level_name}--></b> <!--{if $user_info.levelid>1}--><b class="am-badge am-badge-warning am-radius"><!--{$user_info.expire_date}--></b><!--{else}--><b class="am-badge am-badge-warning am-radius">{$lang.index.upgrade}</b><!--{/if}-->
+            </a><a href="?action=member&do=logout"><span class="am-icon-sign-out" style="margin-left: 10px;">{$lang.logout}</span></a>
+            <!--{/if}-->
+		</div>
+		
+	<i class="am-icon-bar-chart"></i> {$lang.index.group_links}：<b><!--{$total}--></b> {$lang.index.links_number}：<b><!--{$list.0.create_time|date_format:"%H:%i:%s"}--></b>	
+ </div>
+ 
+ <div id="notice" class="am-btn am-btn-warning am-radius"><i class="am-icon-chevron-circle-right"></i><marquee scrollamount="5"><!--{$cfg.notice}--></marquee></div>
+	
+<div class="am-u-sm-12" style="margin:10px 0px; font-size:12px;">
+	<button type="button" id="add-share" class="am-btn am-btn-warning am-radius" style="width:100%;"><i class="am-icon-share-alt-square"></i> {$lang.index.btn_share}</button>
+</div>  
+<div class="am-u-sm-12" id="post-share-box">	
+	<div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">
+		<h3 class="am-panel-title">{$lang.index.prize_tips}<!--{$cfg.coin_name}-->！</h3>
+	  </div>
+		<form class="am-form">
+		  <fieldset>
+			<div class="am-form-group" style="margin-top: 0px;">
+			  <label for="doc-ta-1" style="font-size:14px;">{$lang.index.share_tips1}</label><br/>
+			  <label for="doc-ta-1" style="font-size:14px;color:#f00;">{$lang.index.share_tips2}</label>
+			  <textarea class="" rows="8" id="post-share-content" placeholder="{$lang.index.share_tips3}"></textarea>
+			</div>
+			<p style="margin:-10px 0px; font-size:12px; color:#999;">{$lang.index.share_tips4} <span class="am-badge am-badge-danger am-radius"><!--{$cfg.link_prize}--></span> {$lang.index.piece}<!--{$cfg.coin_name}-->。</p>
+			<p style="margin-bottom:-15px;"><button type="button" id="post-share" class="am-btn am-btn-warning am-radius">{$lang.index.btn_submit}</button></p>
+		  </fieldset>
+		</form>
+	</div>
+</div>
+<!--{if $user_info.userid neq ''}-->
+<style>
+.tishi-i p{line-height:14px;padding-top:0px;font-size:12px;}
+.tishi-i-cg p{line-height:10px;padding-top:0px;font-size:12px;}
+.tishi-i i{font-style:normal;font-weight:bold;}
+.tishi-i .f-red{color:#f00;}
+</style>
+<div class="am-u-sm-12">
+	<div class="am-alert am-alert-secondary tishi-i">
+		{$lang.index.share_tips5}
+	</div>	
+</div>
+<!--{/if}-->
+
+<script>
+$('#add-share').on('click', function(){
+	$("#post-share-box").css('display','block');	
+});	
+$('#post-share').on('click', function(){
+  	var short = $.trim($("#post-share-content").val());
+	
+	if (short=='') {
+		layer.alert('{$lang.index.no_links}', {icon: 0, title:'{$lang.index.tips}'}, function(index){
+			$("#post-share-content").focus(); // 获取焦点
+			layer.close(index);
+		}); 
+		return false;
+	}
+	
+  	// ----以行转换成数组
+	short=short.replace(/^\s*[\r\n]/gm,'');
+	short=short.replace(/[ \t\r\f\v]/g,'');
+	var shortArr=short.split('\n');
+	//console.log(shortArr);	
+	//alert(shortArr)
+	// ----以行转换成数组 --end
+	
+	$.ajax({
+		type: "post",
+		url: "index.php?action=share&do=add",
+		data:"short="+shortArr,
+		async: false,
+		cache: false,
+		dataType:"json",
+		success: function (data) {
+		   if(data.status==200){
+			   if (data.money) {
+				   data.msg = '<span style="font-size:12px;">'+data.msg+'</span> <span class="am-badge am-badge-danger am-radius"><!--{$cfg.coin_name}-->+'+data.money+'</span><br/>';
+			   }
+			   
+				layer.alert(data.msg, {icon: 1, title:'{$lang.index.tips}'}, function(index){
+					layer.close(index);
+					location.reload();
+				}); 
+				return false; 		
+		   }	     
+		   if(data.status==202){
+				layer.confirm(data.msg, {icon: 0, title:'{$lang.index.tips}'}, function(index){
+				  window.location.href="?action=member&do=login"; 	  
+				  layer.close(index);
+				});   		
+		   }	
+		}
+	});
+});
+
+function tips_pull(){
+	$.ajax({
+		type: "post",
+		url: "index.php?action=member&do=ajaxloginprize",
+		async: false,
+		cache: false,
+		dataType:"json",
+		success: function (data) {
+			if (data.msg=='OK') {
+				var msg = '<span style="font-size:12px;">{$lang.index.prize_login}</span> <span class="am-badge am-badge-danger am-radius"><!--{$cfg.coin_name}-->+<!--{$cfg.login_prize}--></span><br/>';
+				layer.alert(msg, {title:'{$lang.index.msg_tips}'}, function(index){
+					  layer.close(index);
+				});
+			}
+		}
+	});
+}
+$(function () {
+	tips_pull();
+});
+</script>
+
+	<div class="am-u-sm-12">	
+		<div class="am-panel am-panel-default">
+            <div class="am-panel-hd" style="border-bottom:none;">
+					  
+            </div>
+            <table class="am-table am-table-striped am-table-hover">
+                <thead>
+                    <!--tr>
+                        <th></th>
+                        <th></th>
+                    </tr-->
+                </thead>
+                <tbody>   
+                    <!--{foreach from=$list item=row}-->
+                    <tr onclick="go('<!--{$row.id}-->')" style="font-size:12px;">
+                        <td>
+                        <span style="font-size:12px;"><span class="am-badge am-badge-primary am-radius"><!--{$row.time}--></span> <!--{$row.name}--> <span class="am-badge am-badge-success am-radius"><!--{$row.number}--></span><br />
+                        <span style="color:#999; font-size:12px;"><!--{$row.link}--></span>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>			
+<hr/>
+  <div class="am-u-sm-12" style=" font-size:14px;">
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-md-12">
+        {$lang.index.share_tips6}
+      </div>      
+    </div>
+  </div>
+</div>
+<style>
+footer a { color:#333;}
+.tj{display:none;}
+</style>
+<footer class="am-margin-top">
+  <hr/>
+  <p class="am-text-center">
+    <small>{$lang.index.warnning}</small></br>
+    <small><!--{$cfg.copyright}--></small>
+  </p>
+</footer>
+<!--回到顶部-->
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+<a href="#" title="{$lang.label.go_top}">
+    <span class="am-gotop-title">{$lang.label.go_top}</span>
+      <i class="am-gotop-icon am-icon-chevron-up"></i>
+</a>
+<!--回到顶部 end-->
+</div>
+<div class="tj"><!--{$cfg.count}--></div>
+<script>
+function go(short){
+	window.open('?do=jump&short='+short);  
+	}  
+</script>
+</body>
+</html>

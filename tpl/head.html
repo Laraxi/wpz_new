@@ -1,0 +1,26 @@
+<header class="am-topbar am-topbar-inverse" style="background:#FFF; border-bottom:1px solid #eee; height:65px;">
+  <div class="am-container am-g-fixed">
+    <h1 class="am-topbar-brand" style="margin-left:-10px;">
+      <a href="/" class="am-text-ir"><img src="<!--{$cfg.template_dir}-->/img/logo.jpg" width="330" height="55" border="0"><!--{$cfg.webtitle}--> - {$lang.index.web_desc}</a>
+    </h1>
+	<div class="login-status">
+        <!--{if $user_info.userid==''}-->
+        <span style="padding-right:5px;"> {$lang.index.login_tips} </span>
+        <a href="?action=member&do=login" class="am-icon-sign-in"> {$lang.login}</a>
+        <!--{else}-->
+        <span class="am-icon-qq"></span>
+        <span style="padding-top:10px;padding-left:5px;">
+        UID：<b class="am-badge am-radius"><!--{$user_info.username}--></b>
+        <a href="?action=member&do=charge"><!--{$cfg.coin_name}-->：<b class="am-badge am-radius"><!--{$user_info.money}--></b></a>
+        <a href="?action=member">{$lang.index.level}：<b class="am-badge am-badge{if $user_info.levelid>1}-warning{/if} am-radius"><!--{$user_info.level_name}--></b>
+        <!--{if $user_info.levelid>1}-->
+        <b class="am-badge am-badge-warning am-radius"><!--{$user_info.expire_date}--></b>
+        <!--{else}-->
+        <b class="am-badge am-badge-warning am-radius">{$lang.index.upgrade}</b>
+        <!--{/if}-->
+        </a>
+        <a href="?action=member&do=logout"><span class="am-icon-sign-out" style="margin-left:10px;">{$lang.logout}</span></a>
+        <!--{/if}-->
+    </div>
+  </div>
+</header>

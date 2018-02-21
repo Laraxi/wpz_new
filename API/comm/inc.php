@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101436646","appkey":"9f9ad76838992c34c24ca2e974949b85","callback":"http://www.009wp.com","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

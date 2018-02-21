@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
+<title>{$lang.label.admin_login} - <!--{$cfg.webtitle}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/login.css" type="text/css" rel="stylesheet"> 
+</head>
+
+<body> 
+<div id="login">
+<h1><a href="#" title=""><!--{$cfg.webtitle}--></a></h1> 
+<form accept-charset="utf-8" action="?action=user&do=loginok" method="post" target="_top">
+	<p>
+		<label>{$lang.user_account}：</label>
+		<input class="input" name="username" size="20" type="text" />
+	</p>
+	<p>
+		<label>{$lang.password}：</label>
+		<input class="input" name="password" size="20" type="password" />
+	</p>
+    <p>
+		<label>{$lang.verify_code}：</label><br />
+		<input class="input" name="vcode" size="10" type="text" style="width:150px" />
+        <input type="hidden" name="code_id" id="code_id" value="" />
+        <span style="display:block; position:absolute;margin:-40px 0 0 160px;"><img id="vcode_img" onclick="change_code(this.id)" title="{$lang.refresh}" style="cursor:pointer" /></span><script language="javascript">
+					   var code_id=Math.random();
+					   document.getElementById("code_id").value=code_id;
+					   document.getElementById("vcode_img").src="lib/captcha.php?code_id="+document.getElementById("code_id").value;
+					   function change_code(id) {
+					      document.getElementById(id).src="lib/captcha.php?code_id="+document.getElementById("code_id").value+"&rnd="+Math.random();
+					   }
+					   </script>
+	</p>
+	<p class="submit">
+		<input class="button-primary" name="commit" type="submit" value="{$lang.login}" />
+	</p>
+</form>
+</div>
+
+
+</body>
+</html>

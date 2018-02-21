@@ -1,0 +1,670 @@
+@charset "utf-8";
+body{
+	margin: 0px;
+    padding: 0px;
+    font-family: arial,'宋体',sans-serif;
+    line-height: 12px;
+    text-align: left;
+}
+b{
+	font-weight:normal;
+	color: #ff0000; /*红色*/
+	cursor: pointer;
+}
+.span2{
+	color: #0000ff; /*浅蓝色*/
+}
+.span3{
+    color: #808080;/*浅灰色*/
+}
+.spanpdf{
+    color: #000000;/*黑色*/
+}
+.spanpdfbold{
+    color: #000000;/*黑色*/
+    font-weight: bold;
+}
+.spanpdfsmall{
+    color: #000000;/*黑色*/
+    font-size: 13px;
+    line-height: 13px;
+}
+.hrdashed{
+    height: 1px;
+    border: none;
+    border-top: 1px dashed #000000;
+}
+.hrsolid{
+    height: 1px;
+    border: none;
+    border-top: 1px solid #000000;
+}
+.hrsolid2{
+    height: 1px;
+    border: none;
+    border-top: 2px solid #000000;
+}
+
+/* 下面是3个容器：顶部--标题；中间--内容；底部 */
+#top{
+
+	width: 960px;
+	height: 30px;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	background: #ffffff;
+	border: 0px solid;
+	text-align: center;
+}
+#toppdfimages{
+    width: 960px;
+    height: 70px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    background: #ffffff;
+    border: 0px solid;
+    text-align: center;
+}
+#toppdftitle{
+
+    width: 960px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    background: #ffffff;
+    border: 0px solid;
+    text-align: center;
+}
+#middle{
+	text-align: center;
+	width: 960px;
+	height: auto;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;	
+    padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	background: #ffffff;
+	border: 0px solid;
+}
+/* 下面是表格样式 */
+/* 顶部表格样式 */
+.tabtop{
+	width: 960px;
+	height: 100%;
+	font-size: 20px;
+    color: #0000FF;
+    background-color: #E1FADA;   
+}
+
+/* 导出pdf顶部logo表格样式 始 */
+.tabtoppdfimages{
+    width: 960px;
+    height: 100%;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #ffffff;   
+}
+/* 导出pdf顶部logo表格样式 止 */
+
+/* 导出pdf顶部合同标题表格样式 始 */
+.tabtoppdftitle{
+    width: 960px;
+    height: 100%;
+    font-size: 25px;
+    color: #000000;
+    background-color: #ffffff;   
+}
+/* 导出pdf顶部合同标题表格样式 止 */
+
+/* 中部表格 居中 样式 始*/
+.tabmiddle{
+	width: 960px;
+    border-width: 1px;  
+    border-color: #666666;  
+    border-collapse: collapse;
+}
+.tabmiddle th{
+    border-width: 1px; 
+    margin: 0px; 
+    padding: 0px;  
+    border-style: solid;
+    height: 25px;
+    line-height: 25px;  
+    border-color: #666666;   	
+}
+.tabmiddle td{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #666666;  
+    overflow: hidden;
+}
+/* 中部表格 居中 样式 止*/
+
+/* 中部表格 左对齐 只有外框没有内框 样式 始*/
+.tabborder{
+    width: 475px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    border: 2px;
+    border-style: solid;  
+    border-color: #000000;  
+    border-collapse: collapse;
+}
+.tabborder th{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    height: 25px;
+    line-height: 25px;
+    border-style: none;
+    border-color: #ffffff;  
+    overflow: hidden;
+    text-align: center;
+}
+.tabborder td{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    height: 25px;
+    line-height: 25px;
+    border-style: none;
+    border-color: #ffffff;  
+    overflow: hidden;
+    text-align: left;
+}
+/* 中部表格 左对齐 只有外框没有内框 样式 止*/
+
+/* 只有外框没有内框 外框 样式 始*/
+.tabborderleft{
+    width: 960px;
+    border-width: 1px;  
+    border-color: #000000;  
+    border-collapse: collapse;
+}
+.tabborderleft td{
+    border-width: 1px;  
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #000000;  
+    overflow: hidden;
+    text-align: left;
+    vertical-align: text-top;
+}
+/* 只有外框没有内框 外框 样式 止*/
+
+/* 中部表格 居中 缩略图 样式 始*/
+.tabmiddleimages{
+    width: 960px;
+    border-width: 1px;  
+    border-color: #666666;  
+    border-collapse: collapse;
+}
+.tabmiddleimages td{
+    border-width: 1px;  
+    padding: 0px 0px; 
+/* 标准卡尺寸：480px * 303px */ 
+    height: 303px;
+    line-height: 303px;
+    border-style: solid;  
+    border-color: #666666;  
+    overflow: hidden;
+}
+/* 中部表格 居中 缩略图 样式 止*/
+
+/* 中部表格 左对齐 样式 始*/
+.tableft{
+    width: 960px;
+    border-width: 1px;  
+    border-color: #666666;  
+    border-collapse: collapse;
+}
+.tableft td{
+    border-width: 1px;  
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;  
+    height: 30px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #666666;  
+    overflow: hidden;
+    text-align: left;
+}
+/* 中部表格 左对齐 样式 止*/
+
+/* 中部表格 左对齐 签字 样式 始*/
+.tableftqianzi{
+    width: 960px;
+    border-width: 1px;  
+    border-color: #666666;  
+    border-collapse: collapse;
+}
+.tableftqianzi td{
+    border-width: 1px;  
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;  
+    height: 60px;
+    line-height: 60px;
+    border-style: solid;  
+    border-color: #666666;  
+    overflow: hidden;
+    text-align: left;
+}
+/* 中部表格 左对齐 签字 样式 止*/
+
+/* 导出pdf签订日期、合同号表格样式 始 */
+.tabmiddlepdf{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    border-collapse: collapse;
+}
+.tabmiddlepdf td{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    overflow: hidden;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left :0px;
+    border-right: 0px;
+}
+/* 导出pdf签订日期、合同号表格样式 止 */
+
+/* 导出pdf 正文 卡片销售合同 左对齐表格样式 始 */
+.tabcardpdf{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    border-collapse: collapse;
+}
+.tabcardpdf td{
+    border-width: 1px;  
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    overflow: hidden;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left :0px;
+    border-right: 0px;
+    text-align: left;
+    vertical-align: text-top;
+}
+/* 导出pdf 正文 卡片销售合同 左对齐表格样式 止 */
+
+/* 导出pdf正文 销售合同 其他条款 左对齐表格样式 始 */
+.tabpdf{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    border-collapse: collapse;
+}
+.tabpdf td{
+    border-width: 1px;  
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    overflow: hidden;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left :0px;
+    border-right: 0px;
+    text-align: left;
+    vertical-align: text-top;
+}
+/* 导出pdf正文 销售合同 其他条款 左对齐表格样式 止 */
+
+/* 导出pdf正文 公司信息 左对齐表格样式 始 */
+.tabmiddlepdfleft{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    border-collapse: collapse;
+}
+.tabmiddlepdfleft td{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    overflow: hidden;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left :0px;
+    border-right: 0px;
+    text-align: left;
+    vertical-align: text-top;
+}
+/* 导出pdf正文 公司信息 左对齐表格样式 止 */
+
+/* 导出pdf正文居中对齐表格样式 始 */
+.tabmiddlepdfcenter{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #000000; 
+    text-align: center; 
+    border-collapse: collapse;
+}
+.tabmiddlepdfcenter tr{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #000000; 
+    text-align: center;   
+    overflow: hidden;
+}
+.tabmiddlepdfcenter th{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #000000; 
+    text-align: center;   
+    overflow: hidden;
+}
+.tabmiddlepdfcenter td{
+    border-width: 1px;  
+    padding: 0px 0px;  
+    height: 25px;
+    line-height: 25px;
+    border-style: solid;  
+    border-color: #000000; 
+    text-align: center;   
+    overflow: hidden;
+}
+/* 导出pdf正文居中对齐表格样式 止 */
+
+/* 导出pdf签字表格样式 始 */
+.tabmiddlepdfqianzi{
+    width: 960px;
+    border-width: 1px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    border-collapse: collapse;
+}
+.tabmiddlepdfleftqianzi td{
+    border-width: 1px;  
+    padding-left: 20px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;  
+    height: 60px;
+    line-height: 40px;
+    border-style: solid;  
+    border-color: #ffffff;  
+    overflow: hidden;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left :0px;
+    border-right: 0px;
+    text-align: left;
+}
+/* 导出pdf签字表格样式 止*/
+
+/* 嵌套表格样式 */
+.tabsmall{
+	margin: 0px;
+	padding: 0px;
+	width: 100%; 
+    border-collapse: collapse;
+}
+.tabsmall td{
+    border-width: 1px;  
+    height: 30px;
+    line-height: 30px;
+    border-style: solid;  
+    border-color: #666666;
+    overflow: hidden;
+    margin: 0px;
+	margin: 0px;
+}
+.tabmiddle input{height: 30px;line-height: 30px;padding-left: 10px;width: 100%;background: transparent;}/*input的所有背景底色*/
+.tabmiddle select{height: 30px;line-height: 30px;padding-left: 10px;background: transparent;}/*select的所有背景底色*/
+.tabsmall input{height: 30px;line-height: 30px;padding-left: 10px;width: 100%;background: transparent;}/*input的所有背景底色*/
+.tabsmall select{height: 30px;line-height: 30px;padding-left: 10px;background: transparent;}/*select的所有背景底色*/
+.tabsmall tr:nth-child(odd){background: #ffffff;}/*隔行的背景底色 红*/
+.tabsmall tr:nth-child(even){background: #ffffff;}/*隔行的背景底色 蓝*/
+/* 输入框格式 */
+form{
+	margin: 0px;
+	padding: 0px;
+}
+label{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	width: 100%;
+	line-height: 12px;
+}
+.select{
+    margin: 0px;
+	padding: 0px;
+    width: 100%;
+    color: #808080;
+    border: 0px solid #808080;
+}
+.submit{
+	margin: 0px;
+	padding: 0px;
+    width: 100%;
+    color: #808080;
+    border: 0px solid #808080;
+}
+input{
+	margin: 0px;
+	padding: 0px;
+    width: 100%;
+    color: #808080;
+    border: 0px solid #808080;
+}
+.input2{
+	margin: 0px;
+	padding: 0px;
+    width: 100%;
+    color: #808080;
+    border: 0px solid #808080;
+    background: #f4fff5;
+    width: 14px !important;
+    vertical-align: bottom;
+}
+textarea{
+    width: 100%;
+    height: 200px;
+    background: #ffffff;
+    vertical-align: bottom;
+}
+.smalltextarea{
+	width: 100%;
+    height: 60px;
+    background: transparent;/*备注的背景底色*/
+    vertical-align: bottom; /*满格*/
+}
+br{
+	clear: left;
+}
+/*{$lang.save}资料 重新填写等div背景等设置*/
+.submitdiv{
+	text-align: center;
+	padding: 5px 0px;
+	background: #e3fbdb;
+}
+/*添{$lang.save}资料 重新填写等sumbit 背景色、宽度等*/
+.submitclass{
+	cursor: pointer;
+	background: #ffcd00;
+	border: 1px solid #000;
+	color: #ff0100;
+	width: 150px;
+	display: inline-block;
+	line-height: 40px;
+}
+/*添加/删除一行、客户{$lang.label.query}、重置条件等div背景等设置*/
+.submitsmalldiv{
+	text-align: center;
+	padding: 5px 0px;
+	background: #ffffff;
+}
+/*添添加/删除一行、客户{$lang.label.query}、重置条件等sumbit 背景色、宽度等*/
+.submitsmall{
+	cursor: pointer;
+	background: #ffffff;
+	border: 0px solid #000;
+	color: #0000FF;
+	width: 200px;
+	display: inline-block;
+	line-height: 30px;
+}
+/*浏览 submit按钮加边框和底纹 */
+/*.submitliulan{
+	background: #ffffff !important;
+	border: 1px solid #808080;
+	color: #0000ff;
+	width: 70% !important;
+	height: 25px !important;
+	line-height: 25px !important;
+}
+*/
+/* 上传、浏览、等格式和边框 */
+.submitliulan {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF; /* 不显示底色 */
+    /* background: #D0EEFF !important; /* 显示底色 */
+    border: 1px solid #99D3F5; /* 修改上传边框颜色 */
+    border-radius: 4px; /* 修改上传边框圆角弧度 */
+    overflow: hidden;
+    color: #0000ff; /* 修改上传文字的颜色 */
+    cursor: pointer; /* 鼠标放在上传文字上时，变成手掌型 */
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 25px !important;
+    height: 25px !important;
+    width: 70% !important;
+}
+.submitliulan input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.submitliulan:hover {
+    background: #f4fff5;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+
+/* 隐藏部分{$lang.label.query}等格式和边框 */
+.submitcheck {
+    position: relative;
+    display: inline-block;
+    background: #ffcd00 !important;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: #ff0100;
+    text-indent: 0;
+    line-height: 25px !important;
+    height: 25px !important;
+    width: 70% !important;
+}
+.submitcheck input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.submitcheck:hover {
+    background: #f4fff5;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+
+/* 复选框样式 */
+.inputcheckbox{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    color: #ff0100;
+    border: 5px solid red;
+    background: red;
+    width: 30px !important;
+    text-align: right;
+    vertical-align: text-top;
+}
+
+/*嵌套table的表格样式*/
+.smalldiv{
+	display: inline-block;
+	width: 140px;
+}
+.small2div{
+	display: inline-block;
+}
+
+.lin_tabmiddle,.lin_tabmiddle tr,.lin_tabmiddle td{border: 1px solid #000;text-align: center;}

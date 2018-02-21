@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$lang.title.charge_log} - <!--{$cfg.webtitle}--></title>
+  <meta name="description" content="<!--{$cfg.description}-->">
+  <meta name="keywords" content="<!--{$cfg.keywords}-->">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/amazeui.min.css">
+  <script src="<!--{$cfg.template_dir}-->/js/jquery.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/amazeui.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/layer.min.js"></script>
+</head>
+<body>
+<style>
+.am-g-fixed{
+  max-width: 1200px;
+}
+a{ color:#333333}
+.login-status{ float:right;color: #333333; font-size: 14px; padding-top: 20px;}
+.login-status a{color: #333333;}
+.am-pagination li {	margin:0px; }
+.am-pagination li span, .am-pagination li a { padding:3px 6px 3px 6px; }
+</style>
+
+<!--{include file="m_head.html"}-->
+
+<div class="am-g am-g-fixed">
+    <div class="am-u-sm-12">
+        <!--{include file="m_menu.html"}-->
+    </div>
+ 
+ <div class="am-u-sm-12">	
+	<div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">
+	    <h3 class="am-panel-title">{$lang.title.charge_log}</h3>
+	  </div>
+	  <div class="am-panel-bd" style="margin-bottom: -15px;">
+	    <p>{$lang.index.cur_account}<!--{$cfg.coin_name}-->{$lang.index.balance}：<b class="am-badge am-radius"><!--{$user_info.money}--></b></p>
+	  </div>
+		<table class="am-table am-table-striped am-table-hover">
+		  <thead>
+		        <tr>
+		            <th>{$lang.index.order_sn}</th>
+		            <th style="width:80px;"><!--{$cfg.coin_name}-->{$lang.index.amount}</th>
+		            <th>{$lang.index.charge_time}</th>
+		        </tr>
+		    </thead>
+		    <tbody>   
+                        <!--{foreach from=$list item=row}-->
+                        <tr>
+                            <td><!--{$row.order_id}--></td>
+                            <td><!--{$row.amount}--></td>
+                            <td><!--{$row.pay_datetime|date_format:"%H:%i:%s"}--></td>
+                        </tr>
+                        <!--{/foreach}-->
+		    </tbody>
+		</table>
+		</div>
+		<!-- 分页 -->
+		<div class="page" style="font-size:12px;">		
+			<ul class="am-pagination am-pagination-right">
+                    <li><span class="btn">{$lang.total}<!--{$total}-->{$lang.record}</span></li>
+                    <!--{$page}-->
+							</ul>		
+		</div>
+		<!-- 分页 end-->			
+	</div>
+</div>
+<style>
+footer a { color:#333;}
+.tj{display:none;}
+</style>
+<!--{include file="foot.html"}-->
+<!--回到顶部-->
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+<a href="#" title="{$lang.label.go_top}">
+    <span class="am-gotop-title">{$lang.label.go_top}</span>
+      <i class="am-gotop-icon am-icon-chevron-up"></i>
+</a>
+<!--回到顶部 end-->
+</div>
+
+</body>
+</html>

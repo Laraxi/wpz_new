@@ -1,0 +1,366 @@
+@charset "utf-8";
+
+/* 全局 div盒子 样式 (始) */
+.div1024{
+    width:auto;
+    height:auto;
+    overflow:auto;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    font-family:arial,'宋体',sans-serif;
+    font-size:12px;
+    text-align:center;
+    border-style:solid;
+    border-width:0px;
+    border-color:#ffffff;
+}
+.div1024 .divimages{
+    height:75px;
+    width:119px;
+    margin-right:0px;
+    margin-left:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:center;
+    border-style:none;
+    border-width:0px;
+    border-color:#ffffff;
+}
+.div1024 .divtxt{
+    width:200px;
+    white-space:normal;
+    word-wrap:break-word;
+    margin-right:0px;
+    margin-left:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:left;
+    border-style:none;
+    border-width:0px;
+    border-color:#ffffff;
+}
+.div1024 .divtxt400{
+    width:400px;
+    white-space:normal;
+    word-wrap:break-word;
+    margin-right:0px;
+    margin-left:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:left;
+    border-style:none;
+    border-width:0px;
+    border-color:#ffffff;
+}
+.div1024 table{
+	width:1024px;
+	line-height:25px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+	text-align:center;
+	border-style:solid;
+    border-width:1px;
+    border-color:#dddddd;
+}
+.div1024 table td{
+	line-height:25px;
+	font-size:12px;
+	text-align:center;
+	border-style:solid;
+    border-width:1px;
+    border-color:#dddddd;
+}
+
+.div1024 .table874{
+    width:874px;
+    line-height:25px;
+    margin-right:-1px;
+    margin-left:-1px;
+    margin-top:-1px;
+    margin-bottom:-1px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:center;
+    border-style:none;
+    border-width:0px;
+    border-color:#ffffff;
+}
+.div1024 .table874 td{
+    line-height:25px;
+    font-size:12px;
+    text-align:center;
+    border-style:solid;
+    border-width:1px;
+    border-color:#dddddd;
+}
+
+.div1024 span{
+    color:#0000ff; /*浅蓝色*/
+    cursor:pointer;
+    margin-right:0px;
+    padding-bottom:0px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.div1024 .spanred{
+	color:#fa0000; /*红色*/
+	font-weight:bold;
+}
+.div1024 input{
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    width:100%;
+    line-height:25px;
+    color:#000000;
+    background-color:#ffffff;
+    border-width:0px;
+    border-style:none;
+    border-color:#ffffff;
+/* 获取焦点时的边框 */
+    outline-width:1px;
+    outline-style:solid;
+    outline-color:#dddddd;
+}
+.div1024 select{
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    width:100%;
+    height:25px;
+    line-height:25px;
+    color:#000000;
+    background-color:#ffffff;
+    border-width:0px;
+    border-style:none;
+    border-color:#ffffff;
+/* 获取焦点时的边框 */
+    outline-width:1px;
+    outline-style:solid;
+    outline-color:#dddddd;
+}
+.div1024 .inputradio{
+    outline-width:0px !important; /* 阴影部分的大小 */
+    width:15px;
+    height:15px;
+    vertical-align:middle;
+  }
+.div1024 .inputcheck{
+    outline-width:0px !important; /* 阴影部分的大小 */
+    width:18px;
+    height:18px;
+    vertical-align:middle;
+  }
+.div1024 .inputcheck1{
+    outline-width:0px !important; /* 阴影部分的大小 */
+    width:12px;
+    height:12px;
+    vertical-align:middle;
+}
+.div1024 .textarea60{
+    width:100%;
+    height:60px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background:transparent;/*备注的背景底色*/
+    vertical-align:bottom; /*满格*/
+}
+.div1024 .textarea50{
+    width:100%;
+    height:50px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background:transparent;/*备注的背景底色*/
+    vertical-align:bottom; /*满格*/
+}
+.div1024 .textarea200{
+    width:100%;
+    height:200px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background:transparent;/*备注的背景底色*/
+    vertical-align:bottom; /*满格*/
+}
+/*{$lang.label.query}资料、重置条件等div背景等设置*/
+.div1024 .submitcheck{
+    cursor:pointer;
+    background:#ffcd00;
+    border:0px solid #ffffff;
+    color:red;
+    width:100px;
+    display:inline-block;
+    line-height:25px;
+}
+/*添加/删除一行、客户{$lang.label.query}等div背景等设置*/
+.div1024 .addbutton{
+    cursor:pointer;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background:#f1f1f1;
+    border:0px none #ffffff;
+    color:red;
+    width:80px;
+    display:inline-block;
+    line-height:25px;
+}
+/*添加/删除等div背景等设置*/
+.div1024 .deletebutton{
+    cursor:pointer;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background:#f1f1f1;
+    border:0px none #ffffff;
+    color:red;
+    width:30px;
+    display:inline-block;
+    line-height:25px;
+}
+.div1024 ul{
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:left;
+}
+
+
+/* 点击显示/隐藏 div盒子 样式 (始) */
+.div800{
+    width:auto;
+    height:auto;
+    overflow:auto;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    font-family:arial,'宋体',sans-serif;
+    font-size:12px;
+    text-align:center;
+    border-style:solid;
+    border-width:0px;
+    border-color:red;
+}
+.div800 table{
+    width:800px;
+    line-height:25px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:center;
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+}
+.div800 table td{
+    line-height:25px;
+    font-size:12px;
+    text-align:center;
+    border-style:solid;
+    border-width:1px;
+    border-color:#000000;
+}
+.div800 input{
+    margin-bottom:0px;
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    width:100%;
+    line-height:25px;
+    color:#000000;
+    background-color:#ffffff;
+    border-width:0px;
+    border-style:none;
+    border-color:#ffffff;
+/* 获取焦点时的边框 */
+    outline-width:1px;
+    outline-style:solid;
+    outline-color:#dddddd;
+}
+.div800 select{
+    margin-bottom:0px;
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    width:100%;
+    height:25px;
+    line-height:25px;
+    color:#000000;
+    background-color:#ffffff;
+    border-width:0px;
+    border-style:none;
+    border-color:#ffffff;
+/* 获取焦点时的边框 */
+    outline-width:1px;
+    outline-style:solid;
+    outline-color:#dddddd;
+}
+
+/*添加/删除一行、客户{$lang.label.query}、重置条件等div背景等设置*/
+.div800 .submitcheck{
+    cursor:pointer;
+    background:#ffcd00;
+    border:0px solid #ffffff;
+    color:red;
+    width:100px;
+    display:inline-block;
+    line-height:25px;
+}

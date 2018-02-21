@@ -1,0 +1,32 @@
+
+    <div class="left">
+        <!-- 左边菜单div盒子（始）-->
+        <div class="select_button select_button_caidan" style="width:100%; cursor:default">{$lang.label.main_menu}</div>
+        <!-- 主菜单（始） -->
+        <div id="my_menu" class="sdmenu">
+            {foreach from=$menus item=menu}
+            <div class="collapsed">
+                <span>{$menu.info.name}</span>
+                {foreach from=$menu.son name=menu_list key=menu_list item=list_menu}
+                    {if !$list_menu.child}
+                    <a class="icon2011" href="?{$list_menu.info.action_code}" style="text-decoration:none"> &emsp;<img src="<!--{$cfg.template_dir}-->/img/arrow.gif" width="5" height="9" /> {$list_menu.info.name}</a>
+                    {else}
+                    <div class="collapsed">
+                        <span>{$list_menu.info.name}</span>
+                            {foreach from=$list_menu.child key=menu_list1 item=chlist}
+                            <a class="icon2021" href="?{$chlist.action_code}" style="text-decoration:none"> &emsp;<img src="<!--{$cfg.template_dir}-->/img/arrow.gif" width="5" height="9" /> {$chlist.name}</a>
+                            {/foreach}
+                    </div>
+                    {/if}
+                 {/foreach}
+            </div>
+            {/foreach}
+        </div>
+        <!-- 主菜单（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- 左边菜单div盒子（止）-->
+    <!-- 左边菜单div盒子 隐藏按钮（始）-->
+    <div class="Switch"></div>
+    <!-- 左边菜单div盒子 隐藏按钮（止）-->

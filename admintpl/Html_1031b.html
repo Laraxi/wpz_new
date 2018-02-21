@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+<style type="text/css">
+#div1024, .div1024{ margin-left:40px; width:90%; }
+#div1024 table, .div1024 table { width:100%; }
+.actions { width:100%; border:1px solid #ccc; margin-bottom:200px; }
+.actions td { border-bottom:1px solid #ccc; padding:6px 0 6px 0; }
+.actions td label { display:inline; font-size:12px; }
+.son_menu { width:100%; border-bottom:1px dotted #ccc; padding:4px 0 4px 0; }
+.first-cell { border-right:1px solid #ccc; }
+.checkbox { vertical-align:middle; margin-top:-2px; }
+.btn_fixed { position:fixed; right:40px; top:100px; }
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right" id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.inside_mgr}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.title.user_manage}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.edit}{$lang.user}</a>
+            </ul>
+            <div class="btn_fixed">
+                <a href="javascript:resetForm('form1')" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+                <a href="javascript:submitForm('form1','user')" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+            </div>
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+          <form name="form1" method="post" style="margin:0; padding:0;">
+            <div id='div1024'>
+                <h4>{$lang.label.menu_action} &nbsp;
+                <br /><br /><label><input type="checkbox" name="checkall" value="checkbox" onclick="check('parent',this);" class="checkbox" /><font style="font-size:12px; font-weight:normal;">{$lang.checked_all}</font></label></h4>
+                <table cellspacing='2' class="actions" id="parent">
+                {foreach from=$actions item=priv}
+                 <tr>
+                  <td width="130" valign="top" class="first-cell">
+                    <label><input name="action_code[]" type="checkbox" value="{$priv.info.action_id}" id="{$priv.info.action_id}" onclick="check('son{$priv.info.action_id}',this);" class="checkbox" />{$priv.info.name}</label>
+                  </td>
+                  <td id="son{$priv.info.action_id}">
+                    {foreach from=$priv.son name=priv_list key=priv_list item=list}
+                    <div class="son_menu" {if $smarty.foreach.priv_list.last} style="border:none"{/if} id="child{$list.info.action_id}">
+                        <label><input type="checkbox" name="action_code[]" value="{$list.info.action_id}" id="{$list.info.action_id}" class="checkbox" {if $list.cando eq 1} checked="true" {/if} onclick="check('child{$list.info.action_id}',this)" /><b>{$list.info.name}&gt;&gt;</b></label>
+                        {foreach from=$list.child key=priv_list1 item=chlist}
+                            <label id="child{$chlist.action_id}"><input type="checkbox" name="action_code[]" value="{$chlist.action_id}" id="{$chlist.action_id}" class="checkbox" {if $chlist.cando eq 1} checked="true" {/if} onclick="check('child{$chlist.action_id}',this)" />{$chlist.name}</label>&emsp;
+                        {/foreach}
+                    </div>
+                    {/foreach}
+                </td>
+                </tr>
+                {/foreach}
+                </table>
+                <input type="hidden" id="id" name="id" value="<!--{$row.id}-->" />
+            </div>
+            </form>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+function submitForm(){
+	var form = document.forms['form1'];
+	form.action="?action=user&do=save_action";
+	form.submit();
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+function check(id,obj){
+	var checkbox = getId(id).getElementsByClassName("checkbox");
+	for (var i=0; i<checkbox.length; i++) {
+		checkbox.item(i).checked=obj.checked;
+	}
+}
+
+<!--{if $row.actions}-->
+var action_list = '{$row.actions}';
+action_list = action_list.split(",");
+for (var i=0; i<action_list.length; i++) {
+	getId(action_list[i]).checked=true;
+}
+<!--{/if}-->
+
+<!--{if $rowjson}-->
+var json= <!--{$rowjson}-->;
+selectJson(json);
+<!--{/if}-->
+</script>
+
+</body>
+</html>

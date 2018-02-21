@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{$lang.pay.pay_type3}</title>
+	<style type="text/css">
+
+* {margin: 0px; padding: 0px;}
+
+body {background: #fff; font: 12px/23px Verdana, Arial, Helvetica, sans-serif;}
+
+a {color: #5c97de; text-decoration: none;}
+
+a:hover {color: #f30; text-decoration: underline;}
+
+.msgbox {border: solid 3px #5c97de; margin: 80px auto 0px auto; width: 450px;}
+
+.title {background: #5c97de; color: #fff; font: bold 12px normal; padding: 7px;}
+
+.content {background: #fff; color: #f30; padding: 15px 10px;}
+
+.link {background: #f9f9f9; border-top: solid 1px #e8e8e8; color: #5c97de; line-height: 20px; padding: 3px; text-align: center;}
+
+</style>
+</head>
+<body>
+	<div align="center" id="qrcode">
+	</div>
+		<!--<div align="center">
+		<p>订单号：<?php echo $out_trade_no; ?></p>
+	</div>
+<div align="center">
+		<form  action="./order_query.php" method="post">
+			<input name="out_trade_no" type='hidden' value="<?php echo $out_trade_no; ?>">
+		    <button type="submit" >查询订单状态</button>
+		</form>
+	</div>
+	<br>
+	<div align="center">
+		<form  action="./refund.php" method="post">
+			<input name="out_trade_no" type='hidden' value="<?php echo $out_trade_no; ?>">
+			<input name="refund_fee" type='hidden' value="1">
+		    <button type="submit" >申请退款</button>
+		</form>
+	</div>
+	<br>
+	<div align="center">
+		<a href="../index.php">返回首页</a>
+	</div>-->
+	
+<div class="msgbox" id="msgbox" style="display:none;">
+
+	<h2 class="title">{$lang.index.pay_tips1}</h2>
+
+    <div class="content">{$lang.index.pay_tips}</div>
+
+    <div class="link"><strong>{$lang.index.pay_tips3} <span id="seconds" style="color: #f60;">2</span> {$lang.index.pay_tips4}</strong><br /><a href="{$cfg.website}/?action=member&do=paylog">{$lang.index.pay_tips5}</a></div>
+
+</div>
+	 <input type="hidden" name="out_trade_no" id="out_trade_no" value="{$out_trade_no}" />
+</body>
+	<script src="pay/demo/qrcode.js"></script>
+	<script type="text/javascript" src="js/jquery1.9.0.min.js"></script>
+	<script>
+		var url = "<!--{$code_url}-->";
+		if(url)
+		{
+			//参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+			var qr = qrcode(10, 'M');
+			qr.addData(url);
+			qr.make();
+			var wording=document.createElement('p');
+			wording.innerHTML = "{$lang.index.pay_tips6}";
+			var code=document.createElement('DIV');
+			code.innerHTML = qr.createImgTag();
+			var element=document.getElementById("qrcode");
+			element.appendChild(wording);
+			element.appendChild(code);
+		}
+
+		 $(function(){
+           setInterval(function(){check()}, 5000);  //5秒查询一次支付是否成功
+        })
+        function check(){
+            var url = "{$cfg.website}/?action=pay&do=orderquery";
+		  
+            var out_trade_no = $("#out_trade_no").val();
+            var param = {'out_trade_no':out_trade_no};
+            $.post(url, param, function(data){
+             if(data=="success"){  
+				document.getElementById("msgbox").style.display="";
+				var i = 2; 
+				var retime = setInterval(function() { 
+					i = i - 1; 
+					if (i < 0){ 
+						window.location.href= '{$cfg.website}/?action=member&do=paylog'; 
+						window.clearInterval(retime); 
+						return; 
+					} 
+					document.getElementById("seconds").innerHTML = i; 
+				}, 1000); 
+			}else{
+			   console.log(data);
+			}
+		});
+	}
+	</script>
+</html> 

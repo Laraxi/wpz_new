@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$lang.title.upgrade} - <!--{$cfg.webtitle}--></title>
+  <meta name="description" content="<!--{$cfg.description}-->">
+  <meta name="keywords" content="<!--{$cfg.keywords}-->">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/amazeui.min.css">
+  <script src="<!--{$cfg.template_dir}-->/js/jquery.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/amazeui.min.js"></script>
+  <script src="<!--{$cfg.template_dir}-->/js/layer.min.js"></script>
+</head>
+<body>
+<style>
+.am-g-fixed{
+  max-width: 1200px;
+}
+a{ color:#333333}
+.login-status{ float:right;color: #333333; font-size: 14px; padding-top: 20px;}
+.login-status a{color: #333333;}
+</style>
+<!--{include file="head.html"}-->
+
+<div class="am-g am-g-fixed">
+<div class="am-g" style="margin-top: -5px;">	
+	<!--{include file="menu.html"}-->
+<div class="am-u-sm-10">	
+	<div class="am-panel am-panel-default">
+	  <div class="am-panel-hd">
+	    <h3 class="am-panel-title">{$lang.title.upgrade}</h3>
+	  </div>
+	  <div class="am-panel-bd">
+	    <p>{$lang.index.cur_account}<!--{$cfg.coin_name}-->{$lang.index.balance}：<b class="am-badge am-radius"><!--{$user_info.money}--></b></p>    
+		<p>{$lang.index.cur_account}{$lang.index.member_level}：<b class="am-badge am-badge{if $user_info.levelid>1}-warning{/if} am-radius"><!--{$user_info.level_name}--></b>
+        <!--{if $user_info.levelid>1}-->
+        <b class="am-badge am-badge-warning am-radius"><!--{$user_info.expire}--></b>
+        <!--{/if}--></p>    
+	  </div>
+				<form class="am-form">
+					  <fieldset style="padding-left: 18px;">		
+					    <div class="am-form-group" style="margin-top: -20px;">
+					    <label for="doc-ipt-zb-1">{$lang.index.upgrade_tips1} </label>
+						  <div class="am-form-group" style=" margin-top:10px;">						  
+								<select data-am-selected name="vip-amount" id="vip-amount-select">
+								  <!--
+								  <option value="10">10{$lang.label.time6}</option>
+								  -->
+								  <option value="30" selected>30{$lang.label.time6}</option>
+								  <option value="60">60{$lang.label.time6}</option>
+								</select>
+							</div>
+						  <div class="am-form-group">
+							<p style="font-weight:normal;">{$lang.index.upgrade_tips2}<!--{$cfg.coin_name}-->：<b id="vip-amount-zb">300</b> {$lang.index.piece}</p>
+						</div>			
+					    </div>	
+					    <p><button type="button" id="post-vip-member" class="am-btn am-btn-warning am-radius">{$lang.index.btn_upgrade}</button></p>
+					    {$lang.index.upgrade_tips3}
+					  </fieldset>
+					</form>
+		</div>
+	</div>
+</div>
+<script>
+$("#vip-amount-select").change(function(){  
+	$("#vip-amount-zb").html($("#vip-amount-select").val()*10)
+}) 
+$('#post-vip-member').on('click', function(){
+  	var amount = $.trim($("#vip-amount-select").val()*10);
+	$.ajax({
+		type: "post",
+		url: "index.php?action=member&do=upgrade",
+		data:"amount="+amount,
+		async: false,
+		cache: false,
+		dataType:"json",
+		success: function (data) {
+			//alert(data.msg);
+			if(data.status==200){
+			   if (data.money) {
+				   data.msg = '<span style="font-size:12px;">'+data.msg+'</span> <span class="am-badge am-badge-danger am-radius"><!--{$cfg.coin_name}-->'+data.money+'</span><br/>';
+			   }
+			   
+				layer.alert(data.msg, {icon: 1, title:'{$lang.index.tips}'}, function(index){
+					layer.close(index);
+					location.reload();
+				}); 
+				return false; 		
+		   }	     
+		   if(data.status==202){
+				layer.confirm(data.msg, {icon: 0, title:'{$lang.index.tips}'}, function(index){
+				  window.location.href="?action=member&do=login"; 	  
+				  layer.close(index);
+				});   		
+		   }
+		   if(data.status==201){
+				layer.confirm(data.msg, {icon: 0, title:'{$lang.index.tips}'}, function(index){
+				  window.location.href="?action=member&do=charge"; 	  
+				  layer.close(index);
+				});   		
+		   }
+		}
+	});
+});
+</script>
+<style>
+footer a { color:#333;}
+.tj{display:none}
+</style>
+<!--{include file="foot.html"}-->
+<!--回到顶部-->
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+<a href="#" title="{$lang.label.go_top}">
+    <span class="am-gotop-title">{$lang.label.go_top}</span>
+      <i class="am-gotop-icon am-icon-chevron-up"></i>
+</a>
+<!--回到顶部 end-->
+</div>
+
+</body>
+</html>

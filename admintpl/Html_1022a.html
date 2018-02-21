@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+<style type="text/css">
+<!--
+#user_number, #user_name { color:#999; }
+-->
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right" id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.inside_mgr}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.title.user_manage}</a>
+                <span class="divider">/</span>
+                <a href=""><!--{$title}--></a>
+            </ul>
+            <a href="javascript:resetForm('form1')" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+            <a href="javascript:submitForm('form1','1011')" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+            <div class="row-fluid">
+                <form name="form1" method="post">
+                  <table class="table table-bordered input_form">
+                      <tr>
+                          <td class="opt_txt">{$lang.label.admin_job}</td>
+                          <td style="border-right:0px;"><select name="roleid" id="roleid" data-required="{$lang.label.please_select}{$lang.label.admin_job}">
+                            <option value="">{$lang.label.please_select}</option>
+                            <!--{foreach from=$role item=role}-->
+                            <option value="{$role.role_id}"{if $row.roleid==$role.role_id} selected="selected"{/if}>{$role.role_name}</option>
+                            <!--{/foreach}-->
+                          </select></td>
+                          <td style="border-left:0px;border-right:0px;">&nbsp;</td>
+                          <td style="border-left:0px;border-right:0px;text-align:left;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="opt_txt">{$lang.label.please_input}{$lang.user_name}：</td>
+                          <td style="border-right:0px;">
+                              <input type="text" id="username" name="username" value="<!--{$row.username}-->" data-required="{$lang.label.please_input}{$lang.user_name}" />
+                          </td>
+                          <td style="border-left:0px;border-right:0px;">
+                              <!-- 这里显示错误信息 -->
+                          </td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td class="opt_txt">{$lang.please_reinput}{$lang.user_name}：</td>
+                          <td style="border-right:0px;">
+                              <input type="text" id="reusername" name="reusername" value="<!--{$row.username}-->" data-required="{$lang.please_reinput}{$lang.user_name}" />
+                          </td>
+                          <td colspan="2" style="border-left:0px;">
+                              <!-- 这里显示错误信息 -->
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="opt_txt">{$lang.password}：</td>
+                          <td style="border-right:0px;">
+                              <input type="password" id="password" name="password" {if $do eq "openoa"} data-required="{$lang.label.please_input}{$lang.password}"{/if} />
+                          </td>
+                          <td style="border-left:0px;border-right:0px;">
+                              <!-- 这里显示错误信息 -->
+                          </td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td class="opt_txt">{$lang.label.please_reinput}{$lang.password}：</td>
+                          <td style="border-right:0px;">
+                              <input type="password" id="repassword" name="repassword" {if $do eq "openoa"} data-required="{$lang.label.please_reinput}{$lang.password}"{/if} />
+                          </td>
+                          <td colspan="2" style="border-left:0px;">
+                              <!-- 这里显示错误信息 -->
+                          </td>
+                      </tr>
+                  </table>
+                  <input type="hidden" id="id" name="id" value="<!--{$row.id}-->" />
+                </form>
+            </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+//表单验证函数
+function formCheck(form){
+	var formArr = form.elements;
+	for (var i=0; i<formArr.length; i++) {
+		var items = formArr[i];
+		if (items.getAttribute("data-required") && items.value=="") {
+			alert(items.getAttribute("data-required"));
+			items.focus();
+			return false;
+		}
+	}
+
+	if (form.elements['password'].value!=form.elements['repassword'].value) {
+		alert("{$lang.js.wrong_repassword}");
+		form.elements['password'].focus();
+		return false;
+	}
+	
+	return true;
+}
+
+function submitForm(){
+	var form = document.forms['form1'];
+	if (formCheck(form)) {
+		var does = document.getElementById("id") && document.getElementById("id").value!="" ? "update" : "add";
+		form.action="?action=user&do=" + does;
+		form.submit();
+	}
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+<!--{if $rowjson}-->
+var json= <!--{$rowjson}-->;
+selectJson(json);
+<!--{/if}-->
+
+</script>
+</body>
+</html>

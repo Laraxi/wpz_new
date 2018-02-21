@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title><!--{$cfg.webtitle}--></title>
+<link rel='stylesheet' href='<!--{$cfg.template_dir}-->/css/login.css' type='text/css' />
+</head>
+<body>
+
+<div id="login">
+<h1><a href="#" title=""><!--{$cfg.webtitle}--></a></h1> 
+<form accept-charset="utf-8" action="?action=member&do=loginok" method="post" target="_top">
+	<p>
+		<label>{$lang.user_account}：<!--{$hello}--></label>
+		<input class="input" name="username" size="20" type="text" />
+	</p>
+	<p>
+		<label>{$lang.password}：</label>
+		<input class="input" name="password" size="20" type="password" />
+	</p>
+	<p class="submit">
+		<input class="button-primary" name="commit" type="submit" value="{$lang.login}" />
+	</p>
+</form>
+
+
+</div>
+</body>
+</html>
+
+

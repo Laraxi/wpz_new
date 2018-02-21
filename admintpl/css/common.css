@@ -1,0 +1,147 @@
+#my_menu{
+	margin-top:40px;
+}
+#my_yonhu{
+	display:none;
+	text-align:center;
+	padding:50px 0px;
+	color:#066;
+	font-size:13px;
+}
+#my_yonhu .my_yonhu_1{
+	line-height:28px;
+}
+#my_yonhu .my_yonhu_tongji{
+	line-height:30px;
+}
+#my_yonhu .tongji{
+	font-size:13px;
+	color:#000000;
+}
+#my_yonhu .tongjired{
+	font-size:13px;
+	color:red;
+}
+#my_yonhu .name{
+	font-size:16px;
+}
+
+#my_menu div div{
+	margin-left:10px;
+}
+#my_menu div .collapsed span{
+	border-left:1px solid #fff;
+	background:url(../img/left22.png);
+}
+#my_menu div div span{
+	border-left:1px solid #fff;
+	background:url(../img/left23.png);
+}
+
+.select_button{
+	width:49%;
+	float:left;
+	height:37px;
+	line-height:37px;
+	text-align:center;
+	border:1px solid #ccc;
+	cursor:pointer;
+	font-weight:bold;
+}
+.select_button:hover{
+	background:#D0D6E3;
+}
+.select_button.select_button_yonhu{
+	border-left:none;
+}
+
+.pagination{
+	bottom:20px;
+	left:0px;
+	right:0px;
+	width:100%;
+	/*background:#F4F4F4;
+	border:1px solid #ccc;*/
+	position:fixed;
+}
+.pagination table{
+	float:left;
+	height:30px;
+}
+.pagination td{
+	border:0px;
+}
+.pagination-page-list{
+	border:1px solid #95B8E7;
+	margin:0px 6px;
+	padding:1px 2px;
+	width:auto;
+	height:auto;
+}
+.pagination-btn-separator{
+	float:left;
+	height:24px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #fff;
+	margin:3px 1px;
+}
+.shou_left_lin{
+	background:url(../img/pagination_icons.png) no-repeat 0px center;
+	width:20px;
+	height:30px;
+	display:inline-block;
+}
+.left_lin{
+	background:url(../img/pagination_icons.png) no-repeat -17px center;
+	width:20px;
+	height:30px;
+	display:inline-block;
+}
+.pagination .pagination-num{
+	margin:0 2px;
+	padding:0px 2px;
+	width:2em;
+	height:auto;
+	border:1px solid #95B8E7;
+	height:18px;
+}
+.shou_right_lin{
+	background:url(../img/pagination_icons.png) no-repeat -47px center;
+	width:20px;
+	height:30px;
+	display:inline-block;
+}
+.right_lin{
+	background:url(../img/pagination_icons.png) no-repeat -28px center;
+	width:20px;
+	height:30px;
+	display:inline-block;
+}
+.shuaxin_lin{
+	background:url(../img/pagination_icons.png) no-repeat -63px center;
+	width:20px;
+	height:30px;
+	display:inline-block;
+}
+.pagination-info{
+	float:right;
+	margin:0 6px 0 0;
+	padding:0;
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+}
+
+.baobiao_main{}
+.baobiao_main .baobiao1{
+	float:left;
+}
+.baobiao_main .baobiao1 .baobiao2{
+	width:700px;
+	height:350px;
+	padding:20px 50px;
+}
+
+.row-fluid .table-striped {
+	margin-bottom:40px;
+}

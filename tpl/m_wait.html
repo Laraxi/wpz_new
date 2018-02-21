@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>{$lang.index.jump_tips} - <!--{$cfg.webtitle}--></title>
+<style type="text/css">
+*{ padding: 0; margin: 0; }
+body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 16px; }
+.system-message{ padding: 24px 48px; }
+.system-message h1{ font-size: 100px; font-weight: normal; line-height: 120px; margin-bottom: 12px; }
+.system-message .jump{ padding-top: 10px}
+.system-message .jump a{ color: #333;}
+.system-message .success,.system-message .error{ line-height: 1.8em; font-size: 36px }
+.system-message .detail{ font-size: 12px; line-height: 20px; margin-top: 12px; display:none}
+.tj{ display:none;}
+</style>
+</head>
+
+<body>
+<div class="system-message">
+<h1>:(</h1>
+<p class="error">{$lang.index.jump_tips2} <!--{$wait}--> </b>{$lang.index.jump_tips3}</span></p>
+<p class="detail"></p>
+<p class="jump">
+<span style="display:none">{$lang.index.auto_jump}</span>
+{$lang.index.jump_waiting}： <b id="wait"><!--{$wait}--></b> {$lang.label.time5} &emsp; <a href="?action=member" title="{$lang.index.upgrade_link}">{$lang.index.upgrade_link}</a>
+</p>
+</div>
+
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = '<!--{$url}-->';
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time <= 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+
+<div class="tj"><!--{$cfg.count}--></div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<style type="text/css">
+<!--
+#username, #name, #create_datetime_start, #create_datetime_end, #ruzhidate_start, #ruzhidate_end { color:#999; }
+-->
+</style>
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+   <!--{include file="Menu.html"}-->
+   
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.inside_mgr}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.title.user_manage}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.user_list}</a>
+            </ul>
+            <a href="javascript:delUser();" class="btn btn-primary pull-right" style="margin-left:10px;" role="button"><i class="icon-download icon-white" ></i> {$lang.batch_del}</a>
+            <a href="?action=user&do=new" class="btn btn-primary pull-right" style="margin-left:10px;" role="button"><i class="icon-plus icon-white" ></i> {$lang.label.add_user}</a>
+            <input type="text" name="username" id="username" class="input-small" value="{$lang.label.user_name}" onfocus="clearValue(this)" onblur="clearValue(this,1)" />
+            <input type="text" name="name" id="name" class="input-small" value="{$lang.label.name}" onfocus="clearValue(this)" onblur="clearValue(this,1)" />
+            &emsp;
+            <input type="text" name="create_datetime_start" id="create_datetime_start" value="{$lang.label.datetime_start}" onclick="laydate()" class="input-small" onfocus="clearValue(this)" onblur="clearValue(this,1)" />
+            - <input type="text" name="create_datetime_end" id="create_datetime_end" value="{$lang.label.datetime_end}" onclick="laydate()" class="input-small" onfocus="clearValue(this)" onblur="clearValue(this,1)" />
+            
+            <button type="button" class="btn" onclick="submitSearch()"><i class="icon-search"></i> {$lang.label.query}</button>
+            <a href="?action=1011" class="btn hidden-phone"><i class="icon-th-list"></i> {$lang.all}</a>
+            
+            <script language="javascript">
+			<!--
+			function submitSearch() {
+				var username = getId("username").value!=getId("username").defaultValue ? "&username="+encodeURI(getId("username").value) : "";
+				var ruzhidate_start = getId("ruzhidate_start").value!=getId("ruzhidate_start").defaultValue ? "&ruzhidate_start="+getId("ruzhidate_start").value : "";
+				var ruzhidate_end = getId("ruzhidate_end").value!=getId("ruzhidate_end").defaultValue ? "&ruzhidate_end="+getId("ruzhidate_end").value : "";
+				var screate_datetime_start = getId("create_datetime_start").value!=getId("create_datetime_start").defaultValue ? "&create_datetime_start="+getId("create_datetime_start").value : "";
+				var screate_datetime_end = getId("create_datetime_end").value!=getId("create_datetime_end").defaultValue ? "&create_datetime_end="+getId("create_datetime_end").value : "";
+				
+				if (username=="" && ruzhidate_start=="" && ruzhidate_end=="" && screate_datetime_start=="" && screate_datetime_end=="") {
+					alert("{$lang.js.no_condition}");
+					getId("username").focus();
+				} else {
+					window.location = "?action=user"+username+ruzhidate_start+ruzhidate_end+screate_datetime_start+screate_datetime_end;
+				}
+			}
+			//-->
+			</script>
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+            <div class="row-fluid">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr align="center" bgcolor="#EFF5FE">
+                            <th nowrap="nowrap"><input class="inputcheck1" type="checkbox" onchange="checkCancel(this)" /></th>
+                            <th nowrap="nowrap">{$lang.label.id}</th>
+                            <th nowrap="nowrap">{$lang.label.member_name}</th>
+                            <th nowrap="nowrap">{$lang.label.nick_name}</th>
+                            <th nowrap="nowrap">{$lang.label.sex}</th>
+							<th nowrap="nowrap">{$lang.label.balance}</th>
+                            <th nowrap="nowrap">{$lang.label.admin_job}</th>
+                            <th nowrap="nowrap">{$lang.label.admin_level}</th>
+                            <th nowrap="nowrap">{$lang.label.user_level}</th>
+                            <th nowrap="nowrap">{$lang.label.login_time}</th>
+                            <th nowrap="nowrap">{$lang.label.logout_time}</th>
+                            <th nowrap="nowrap">{$lang.label.creater}</th>
+                            <th nowrap="nowrap">{$lang.label.create_datetime}</th>
+                            <th nowrap="nowrap">{$lang.handle}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--{foreach from=$list item=row}-->
+                    <tr class="txt_center">
+                        <td nowrap="nowrap"><input class="inputcheck1" type="checkbox" name="id[]" value="<!--{$row.id}-->" /></td>
+                        <td nowrap="nowrap"><!--{$row.id}--></td>
+                        <td nowrap="nowrap"><!--{$row.username}--></td>
+                        <td nowrap="nowrap"><!--{$row.name}--></td>
+                        <td nowrap="nowrap"><!--{$row.gender}--></td>
+                        <td nowrap="nowrap"><!--{$row.money}--></td>
+                        <td nowrap="nowrap"><!--{$row.actions}--></td>
+                        <td nowrap="nowrap"><!--{$row.role_name}--></td>
+                        <td nowrap="nowrap"><!--{$row.level_name}--></td>
+                        <td nowrap="nowrap"><!--{$row.last_login|date_format:"%H:%i:%s"}--></td>
+                        <td nowrap="nowrap"><!--{$row.logout_time|date_format:"%H:%i:%s"}--></td>
+                        <td nowrap="nowrap"><!--{$row.create_name}--></td>
+                        <td nowrap="nowrap"><!--{$row.create_datetime|date_format:"%H:%i:%s"}--></td>
+                        <td nowrap="nowrap">
+                        <a href="?action=user&do=edit&id=<!--{$row.id}-->">{$lang.modify}</a>
+                        <!--{if $row.id neq 1}--><a href="?action=user&do=action&id=<!--{$row.id}-->">{$lang.label.set_action}</a>
+                        <a href="javascript:if(confirm('{$lang.js.confirm_del_user}')){window.location='?action=user&do=canceloa&id=<!--{$row.id}-->';}">{$lang.del}</a><!--{/if}-->
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+                <div class="pagination pagination-centered">
+                    <ul class="">
+                      <li><span class="btn">{$lang.total}<!--{$total}-->{$lang.record}</span></li>
+                      <!--{$page}-->
+                    </ul>
+                </div>
+              
+            </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/2.11.3/jquery.min.js"></script>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  function checkCancel(obj) {
+	var ids = document.getElementsByName("id[]");
+	for (var i=0; i<ids.length; i++) {
+		ids.item(i).checked = obj.checked;
+	}
+  }
+  
+  function delUser() {
+	  var values = "";
+	  var ids = document.getElementsByName("id[]");
+	  for (var i=0; i<ids.length; i++) {
+		  if (ids.item(i).checked == true) {
+			  values = values+ids.item(i).value+",";
+		  }
+	  }
+	  values = values.substr(0,(values.length-1));
+	  if (values=="") {
+		  alert("{$lang.js.select_user}");
+	  } else {
+		  if (confirm('{$lang.js.confirm_del}')) {
+			  window.location = "?action=user&do=deluser&ids="+values;
+		  }
+	  }
+  }
+
+</script>
+</body>
+</html>

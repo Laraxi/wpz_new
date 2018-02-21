@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><!--{$title}--></title>
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap.css" rel="stylesheet">
+<link href="<!--{$cfg.template_dir}-->/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/main.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/common.css" />
+<link rel="stylesheet" href="<!--{$cfg.template_dir}-->/css/icon.css" />
+<script type="text/javascript" src="../js/jquery1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/sdmenu.js"></script>
+<script type="text/javascript" src="../js/laydate/laydate.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/echarts.js"></script>
+
+</head>
+<body>
+<!--{include file="Head.html"}-->
+<div id="middle">
+    <!--{include file="Menu.html"}-->
+    
+    <div class="right"  id="mainFrame">
+        <!-- 以下当前页指示（始） -->
+        <div class="right_cont">
+            <ul class="breadcrumb">{$lang.label.position}
+                <a href="">{$lang.label.system_setting}</a>
+                <span class="divider">/</span>
+                <a href="">{$lang.label.base_info}</a>
+            </ul>
+            <a href="javascript:resetForm('form1')" class="btn btn-primary pull-right" style="margin-left:10px;"><i class="icon-refresh icon-white" ></i> {$lang.reset}</a>
+            <a href="javascript:submitForm1()" class="btn btn-primary pull-right"><i class="icon-inbox icon-white" ></i> {$lang.save}</a>
+        </div>
+        <!-- 以下当前页指示（止） -->
+
+        <!-- 以下正文部分（始） -->
+        <div class="pd10">
+            <div class="row-fluid">
+                <form name="form1" method="post" enctype="multipart/form-data">
+                    <table class="table table-bordered input_form">
+                        <tr class="txt_center">
+                          <td colspan="3" style="background:#eee; font-weight:bold;">{$lang.label.base_setting}</td>
+                        </tr>
+                        <tr>
+                            <td width="200" class="opt_txt">{$lang.label.option1}:</td>
+                            <td width="40%">
+                                <select name="lang" id="lang">
+                                    <option value="zh_cn"{if $row.lang=='zh_cn'} selected="selected"{/if}>中文</option>
+                                    <option value="english"{if $row.lang=='english'} selected="selected"{/if}>English</option>
+                                </select>    
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips1}</td>
+                        </tr>
+                        <tr>
+                            <td width="200" class="opt_txt">{$lang.label.option2}:</td>
+                            <td width="40%">
+                                <input type="text" id="website" name="website" value="<!--{$row.website}-->" data-required="{$lang.label.please_input}{$lang.label.option2}" class="input_w2" />                        
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips2}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option3}：</td>
+                            <td>
+                                <input type="text" id="webtitle" name="webtitle" value="<!--{$row.webtitle}-->" data-required="{$lang.label.please_input}{$lang.label.option3}" class="input_w2" />
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips3}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option4}：</td>
+                            <td><input type="text" id="allow_file_type" name="allow_file_type" value="<!--{$row.allow_file_type}-->" data-required="{$lang.label.please_input}{$lang.label.option4}" class="input_w2" /></td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips4}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option5}：</td>
+                            <td><input type="text" id="allow_file_size" name="allow_file_size" value="<!--{$row.allow_file_size}-->" data-required="{$lang.label.please_input}{$lang.label.option5}" class="input_w2" /></td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips5}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option6}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="page_size" name="page_size" value="<!--{$row.page_size|default:20}-->" data-required="{$lang.label.please_input}{$lang.label.option6}" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips6}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option7}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="index_size" name="index_size" value="<!--{$row.index_size|default:80}-->" data-required="{$lang.label.please_input}{$lang.label.option7}" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips7}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option8}：</td>
+                            <td style="border-right:0px; text-align:left"><input type="text" id="qq" name="qq" value="<!--{$row.qq}-->" data-required="{$lang.label.please_input}{$lang.label.option8}" class="input_w2" /></td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips8}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option9}：</td>
+                            <td style="border-right:0px; text-align:left"><input type="text" id="email" name="email" value="<!--{$row.email}-->" data-required="{$lang.label.please_input}{$lang.label.option9}" class="input_w2" /></td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips9}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option10}：</td>
+                            <td style="border-right:0px; text-align:left"><input type="text" id="keywords" name="keywords" value="<!--{$row.keywords}-->" class="input_w2" /></td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips10}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option11}：</td>
+                            <td style="border-right:0px; text-align:left">
+                                <textarea id="description" name="description" class="input_w2"><!--{$row.description}--></textarea>
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips11}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option12}：</td>
+                            <td style="border-right:0px; text-align:left">
+                                <textarea id="notice" name="notice" class="input_w2"><!--{$row.notice}--></textarea>
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips12}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option13}：</td>
+                            <td style="border-right:0px; text-align:left">
+                                <textarea id="copyright" name="copyright" data-required="{$lang.label.please_input}{$lang.label.option13}" class="input_w2"><!--{$row.copyright}--></textarea>
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips13}</td>
+                        </tr>
+                        <tr>
+                            <td class="opt_txt">{$lang.label.option14}：</td>
+                            <td style="border-right:0px; text-align:left">
+                                <textarea id="count" name="count" class="input_w2"><!--{$row.count}--></textarea>
+                            </td>
+                            <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.please_input14}</td>
+                        </tr>
+                        
+                        <tr class="txt_center">
+                          <td colspan="3" style="background:#eee; font-weight:bold;">{$lang.label.member_setting}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option15}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="coin_name" name="coin_name" value="<!--{$row.coin_name}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips15}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option16}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="coin_rate" name="coin_rate" value="<!--{$row.coin_rate}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips16}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option17}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="link_prize" name="link_prize" value="<!--{$row.link_prize}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips17}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option18}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="reg_prize" name="reg_prize" value="<!--{$row.reg_prize}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips18}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option19}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="login_prize" name="login_prize" value="<!--{$row.login_prize}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips19}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option20}：</td>
+                          <td style="border-right:0px; text-align:left">{$lang.label.option21}：
+                            <input type="text" id="fee" name="fee" value="<!--{$row.fee}-->" class="input-small" />
+                            &emsp;&emsp;{$lang.label.option22}：
+                            <input type="text" id="wait" name="wait" value="<!--{$row.wait}-->" class="input-small" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips20}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option21}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="max_links" name="max_links" value="<!--{$row.max_links}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips21}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option22}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="max_jump" name="max_jump" value="<!--{$row.max_jump}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips22}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option23}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="share_time" name="share_time" value="<!--{$row.share_time}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips23}</td>
+                        </tr>
+                        <tr>
+                          <td class="opt_txt">{$lang.label.option24}：</td>
+                          <td style="border-right:0px; text-align:left"><input type="text" id="free_try_time" name="free_try_time" value="<!--{$row.free_try_time}-->" class="input_w2" /></td>
+                          <td align="left" style="border-left:0px; text-align:left; padding-left:20px;">{$lang.label.option_tips24}</td>
+                        </tr>
+                        
+                        
+                    </table>
+                  </form>
+            </div>
+        </div>
+        <!-- 以上正文部分（止） -->
+        <div class="foot_pd"></div>
+        <!-- 填充div，用来抵消页脚高度 -->
+    </div>
+    <!-- //mainFrame -->
+</div>
+<!-- //middle -->
+<!--{include file="Foot.html"}-->
+
+<script language="javascript">
+//表单验证函数
+function formCheck(form){
+	var formArr = form.elements;
+	for (var i=0; i<formArr.length; i++) {
+		var items = formArr[i];
+		if (items.getAttribute("data-required") && items.value=="") {
+			alert(items.getAttribute("data-required"));
+			items.focus();
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function submitForm1(){
+	var form = document.forms['form1'];
+	if (formCheck(form)) {
+		form.action="?action=system&do=save_setting";
+		form.submit();
+	}
+}
+
+function resetForm(){
+	document.forms['form1'].reset();
+}
+
+<!--{if $rowjson}-->
+var json= <!--{$rowjson}-->;
+selectJson(json);
+<!--{/if}-->
+
+</script>
+
+</body>
+</html>

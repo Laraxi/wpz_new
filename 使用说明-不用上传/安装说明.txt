@@ -1,0 +1,31 @@
+1.用mysql数据库管理工具导入data.sql到您的数据库。
+
+2.用dreamweaver、notepad++之类的编辑软件（不能用系统自带记事本）打开data/config.php，修改配置信息，建议只修改数据库
+  信息，不要修改缓存目录之类，除非您懂php程序。
+
+3.支付宝的配置：请先向支付宝申请支付接入信息，然后用dreamweaver、notepad++之类的编辑软件（不能用系统自带记事本）打开
+  pay/alipay/alipay.config.php 按说明修改配置信息，$alipay_config['partner']、$alipay_config['key']、$alipay_config['alipay_account']
+  都是必填项，请对应填写。
+  
+  证书请放根目录/cert/目录内。
+
+4.微信支付的配置：请先向腾讯申请支付接入信息，然后打开pay/WxPayPubHelper/WxPay.Config.php和pay/WxPayPubHelper/WxPay.pub.config.php，
+  修改 APPID、MCHID、KEY、APPSECRET为您自己的信息。两个文件的位置是差不多的，容易看懂。
+ 
+  证书请放根目录/cert/目录内。
+
+5.修改完毕，将“使用说明-不用上传”外的文件、文件夹上传到您的网站根目录，
+
+
+6.QQ登录的配置：请先向腾讯申请相关的接入信息，然后输入您的网址/Connect2.1/install，按提示安装一下，成功后会在
+  Connect2.1/API/comm/inc.php生成相关的配置信息，把这个inc.php替换一下根目录的API/comm/inc.php即可。如果您没有把握，
+  也可以把Connect2.1/API整个目录移到根目录下，然后Connect2.1这个目录需要删除掉，以保障安全。
+
+7.登录后台地址：您的网址/admin.php，帐号和密码都是admin，进入后台后，点右上角“网站设置”，填写您的网站信息。“语言”
+  一项请保持“中文”，如果您有英文的语言文件，请放lang/english目录后，可以切换到英文版。
+
+  其他项设置请看右侧提示。
+
+
+
+基本问题就这些，遇其他使用问题请联系QQ：736439095 
